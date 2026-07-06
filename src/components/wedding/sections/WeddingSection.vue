@@ -15,7 +15,7 @@ const weddingKey = computed(() => {
     class="parallax-background bg-color-overlay padding-divider-top section-divider-bottom-1"
   >
     <div class="section-divider-top-1 off-section"></div>
-    <!-- The class "section-divider-top-1" can also be applied to the tag <section>. In this case, it was added on a new <div> because the tag <section> have all pseudo elements (::after and ::before) in use. -->
+
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
@@ -43,39 +43,41 @@ const weddingKey = computed(() => {
               <div class="row">
                 <div class="col-6">
                   <h2>
-                    Mme. DOE Jane <br />
+                    Mr. Bernardo Madriage <br />
                     <small>&</small> <br />
-                    M. DOE John
+                    Mrs. Cristina Madriaga
                   </h2>
                 </div>
 
                 <div class="col-6">
                   <h2>
-                    Mme. ROE Rosalie <br />
+                    Mr. Fernando Badua Jr. <br />
                     <small>&</small> <br />
-                    M. ROE Richard
+                    Mr. Jacqueline Badua
                   </h2>
                 </div>
               </div>
 
               <div class="uppercase my-4">
-                ont la joie de vous faire part du mariage de leurs enfants
+                joyfully invite you to celebrate the marriage of their children
               </div>
 
-              <h1 class="my-2">Mélaine <small>&</small> Michel</h1>
+              <h1 class="my-2">Chris <small>&</small> Micah</h1>
 
-              <div class="date">le DD-DD MM, YYYY</div>
+              <div class="date">10 13 2026</div>
+
               <div class="uppercase">
                 <i class="me-1 fas fa-map-marker-alt"></i>
-                Localisation: Ile-De-France
+                Location: Silang, Cavite
               </div>
+
               <br />
 
               <a
                 :href="'/rsvp?key=' + weddingKey"
                 class="btn btn-light scrollto"
               >
-                Confirmer votre présence
+                RSVP
               </a>
             </div>
           </div>

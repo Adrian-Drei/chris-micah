@@ -26,38 +26,39 @@
             <span class="v-lines"></span>
 
             <div class="invite_title invite_title_rsvp">
-              <div class="text">Faire part<small>de</small>Mariage</div>
+              <div class="text">Wedding <small>Invitation</small></div>
             </div>
 
             <div class="invite_info">
               <div class="row">
                 <div class="col-6">
                   <h2>
-                    Mme. DOE Jane <br />
+                    Mrs. Jane Doe <br />
                     <small>&</small> <br />
-                    M. DOE John
+                    Mr. John Doe
                   </h2>
                 </div>
 
                 <div class="col-6">
                   <h2>
-                    Mme. ROE Rosalie <br />
+                    Mrs. Rosalie Roe <br />
                     <small>&</small> <br />
-                    M. ROE Richard
+                    Mr. Richard Roe
                   </h2>
                 </div>
               </div>
 
               <div class="uppercase my-4">
-                ont la joie de vous faire part du mariage de leurs enfants
+                joyfully invite you to celebrate the marriage of their children
               </div>
 
               <h1 class="my-2">Mélaine <small>&</small> Michel</h1>
 
-              <div class="date">le DD-DD MM, YYYY</div>
+              <div class="date">DD MM, YYYY</div>
+
               <div class="uppercase">
                 <i class="me-1 fas fa-map-marker-alt"></i>
-                Localisation: Ile-De-France
+                Location: Île-de-France
               </div>
             </div>
           </div>

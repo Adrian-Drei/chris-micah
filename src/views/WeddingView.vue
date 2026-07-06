@@ -8,6 +8,7 @@ import TimelineSection from "../components/wedding/sections/TimelineSection.vue"
 import WeddingSection from "../components/wedding/sections/WeddingSection.vue";
 import WeddingLocationFullSection from "../components/wedding/sections/WeddingLocationFullSection.vue";
 import BridesMaidsAndGroomsMenSection from "../components/wedding/sections/BridesMaidsAndGroomsMenSection.vue";
+import SponsorsSection from "../components/wedding/sections/SponsorsSection.vue";
 import WeddingGiftsSection from "../components/wedding/sections/WeddingGiftsSection.vue";
 import GallerySection from "../components/wedding/sections/GallerySection.vue";
 import CountdownSection from "../components/wedding/sections/CountdownSection.vue";
@@ -39,6 +40,7 @@ onUnmounted(() => {
   <WeddingSection />
   <WeddingLocationFullSection />
   <BridesMaidsAndGroomsMenSection />
+  <SponsorsSection />
   <WeddingGiftsSection />
   <GallerySection />
   <CountdownSection />
