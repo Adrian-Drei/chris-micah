@@ -14,12 +14,23 @@ const weddingKey = computed(() => {
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
-          <h2 class="section-title">Location & Schedule</h2>
+          <h2 class="section-title">Location</h2>
         </div>
       </div>
     </div>
 
-    <div class="gmap" id="map_canvas_full"></div>
+    <!-- GOOGLE MAP EMBED -->
+    <div class="map-wrapper">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d7734.504065943806!2d121.03768978860317!3d14.238514644113346!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sChateaux%20De%20Paris%20South%20Forbes%20Golf%20City%2C%20South%20BLVD%2C%20Silang%204118%20Cavite!5e0!3m2!1sen!2sph!4v1783374109284!5m2!1sen!2sph"
+        width="100%"
+        height="500"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+      ></iframe>
+    </div>
 
     <div
       class="map_pins_full"
@@ -27,92 +38,44 @@ const weddingKey = computed(() => {
       data-animation-delay="200"
     >
       <ul class="pins">
-        <li><i class="fas fa-praying-hands"></i>Khmer Ceremony</li>
-        <li><i class="fas fa-church"></i>Church Ceremony</li>
-        <li><i class="fas fa-glass-cheers"></i>Wedding Reception</li>
-        <li><i class="fas fa-utensils"></i>Brunch</li>
+        <li>
+          <i class="fas fa-praying-hands"></i>
+          <p>
+            Chateaux De Paris<br />
+            South Forbes Golf City, South Boulevard Silang, Cavite 4118
+          </p>
+        </li>
       </ul>
     </div>
   </section>
   <!-- END WEDDING LOCATION SECTION -->
-
-  <section id="wedding-details">
-    <div class="container">
-      <div class="row mt-5">
-        <div
-          class="col-md-3 my-5 wedding-details"
-          data-animation-direction="from-bottom"
-          data-animation-delay="300"
-        >
-          <i class="fas fa-praying-hands fa-xs"></i>
-          <br />
-          <h4>
-            Khmer Ceremony
-            <small>DD MM YYYY</small>
-            <small>8:30 AM – 4:00 PM</small>
-          </h4>
-          <p>Paris, France <br /></p>
-          <a
-            :href="'/khmer-ceremony?key=' + weddingKey"
-            class="btn btn-primary"
-          >
-            View Ceremony Program
-          </a>
-        </div>
-
-        <div
-          class="col-md-3 my-5 wedding-details"
-          data-animation-direction="from-bottom"
-          data-animation-delay="300"
-        >
-          <i class="fas fa-church fa-xs"></i>
-          <br />
-          <h4>
-            Church Ceremony
-            <small>DD MM YYYY</small>
-            <small>1:30 PM – 3:00 PM</small>
-          </h4>
-          <p>Paris, France <br /></p>
-          <a href="#location" class="btn btn-primary">
-            More Details Coming Soon
-          </a>
-        </div>
-
-        <div
-          class="col-md-3 my-5 wedding-details"
-          data-animation-direction="from-bottom"
-          data-animation-delay="300"
-        >
-          <i class="fas fa-glass-cheers fa-xs"></i>
-          <br />
-          <h4>
-            Wedding Reception
-            <small>DD MM YYYY</small>
-            <small>5:30 PM – 3:00 AM</small>
-          </h4>
-          <p>Paris, France <br /></p>
-          <a href="#" class="btn btn-primary"> Nearby Accommodations </a>
-        </div>
-
-        <div
-          class="col-md-3 my-5 wedding-details"
-          data-animation-direction="from-bottom"
-          data-animation-delay="300"
-        >
-          <i class="fas fa-utensils fa-xs"></i>
-          <br />
-          <h4>
-            Brunch
-            <br /><br />
-            <small>DD MM YYYY</small>
-            <small>11:00 AM – 2:00 PM at the Venue</small>
-          </h4>
-          <p>Paris, France <br /></p>
-          <a href="#" class="btn btn-primary"> Visit the Venue </a>
-        </div>
-      </div>
-    </div>
-  </section>
 </template>
 
-<style scoped></style>
+<style scoped>
+.pins li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+}
+.pins li p {
+  margin: 0;
+}
+.map-wrapper {
+  width: 100%;
+  margin-top: 40px;
+  overflow: hidden;
+}
+
+.map-wrapper iframe {
+  display: block;
+  width: 100%;
+  height: 500px;
+}
+
+@media (max-width: 768px) {
+  .map-wrapper iframe {
+    height: 350px;
+  }
+}
+</style>
