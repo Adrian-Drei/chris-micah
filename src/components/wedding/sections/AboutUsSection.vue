@@ -86,10 +86,6 @@ import { getImageFormat } from "@/utils/helpers";
             "Today and always, beyond tomorrow, I need you by my side forever,
             as my best friend, my lover, and my soulmate." – Chris
           </p>
-          <img
-            src="/src/assets/images/wedding_mm/signature.png"
-            alt="Signature"
-          />
         </div>
       </div>
     </div>
