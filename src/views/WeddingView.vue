@@ -41,11 +41,11 @@ onUnmounted(() => {
   <WeddingLocationFullSection />
   <BridesMaidsAndGroomsMenSection />
   <SponsorsSection />
+  <TestimonialsSection />
+  <DetailsSection />
   <WeddingGiftsSection />
   <GallerySection />
   <CountdownSection />
-  <TestimonialsSection />
-  <DetailsSection />
 
   <ScrollToTop v-if="displayScrollToTop" />
 </template>
