@@ -30,17 +30,8 @@ import RSVPFormComponent from "../forms/RSVPFormComponent.vue";
             <a href="/" class="btn btn-primary"> Discover our story </a>
 
             <blockquote class="neela-quote small extra-margin">
-              Please RSVP<br />by September 13, 2026
+              Please RSVP<br />before August 31, 2026
             </blockquote>
-
-            <strong>
-              Here is a short video explaining how to RSVP to our wedding:
-              <br />
-
-              <a href="#">
-                <i class="fa-brands fa-youtube fa-2x"></i>
-              </a>
-            </strong>
 
             <br />
             <br />
@@ -56,16 +47,8 @@ import RSVPFormComponent from "../forms/RSVPFormComponent.vue";
 
             <ul class="contact-info">
               <li>
-                <span>E-mail:</span>
-                <a href="mailto:mariage.mm@loremipsum.com">
-                  mariage.mm@loremipsum.com
-                </a>
-              </li>
-            </ul>
-
-            <ul class="sn-icons">
-              <li>
-                <a href="#"><i class="fab fa-instagram-square"></i></a>
+                <span class="normal-case">Number:</span>
+                <a href="sms:+639636325881">09636325881</a>
               </li>
             </ul>
           </div>

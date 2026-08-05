@@ -93,7 +93,7 @@ const openInvitation = async () => {
   margin: 0;
   color: #4f493b;
   font-family: "Playfair Display", serif;
-  font-size: clamp(3.4rem, 10vw, 5.4rem);
+  /* font-size: clamp(2rem, 10vw, 5.4rem); */
   font-weight: 400;
   line-height: 0.9;
 }
@@ -202,6 +202,9 @@ const openInvitation = async () => {
   }
   .welcome-message {
     font-size: 1.1rem;
+  }
+  .welcome-card h1 {
+    font-size: 3rem;
   }
   .welcome-date {
     line-height: 1.7;
