@@ -1,4 +1,5 @@
 <script setup lang="ts">
+/* global google */
 import { onMounted, ref } from "vue";
 import { importLibrary, setOptions } from "@googlemaps/js-api-loader";
 
@@ -45,7 +46,8 @@ onMounted(async () => {
       content: pin,
     });
   } catch (error) {
-    mapError.value = "We could not load the map. Please use the venue link below.";
+    mapError.value =
+      "We could not load the map. Please use the venue link below.";
     console.error("Google Maps failed to load", error);
   }
 });
@@ -64,7 +66,11 @@ onMounted(async () => {
 
     <!-- GOOGLE MAPS JAVASCRIPT API -->
     <div class="map-wrapper">
-      <div ref="mapElement" class="google-map" aria-label="Wedding venue map"></div>
+      <div
+        ref="mapElement"
+        class="google-map"
+        aria-label="Wedding venue map"
+      ></div>
       <div v-if="mapError" class="map-error">
         <i class="fas fa-map-marker-alt"></i>
         <p>{{ mapError }}</p>

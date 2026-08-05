@@ -5825,7 +5825,10 @@ textarea.form-control {
     z-index: -1;
     background-position: center center;
     background-repeat: no-repeat;
-    background-image: url(/src/assets/images/flower-small.svg);
+    background-color: #4f493b;
+    background-image: none;
+    -webkit-mask: url(/src/assets/images/flower-small.svg) center / contain no-repeat;
+    mask: url(/src/assets/images/flower-small.svg) center / contain no-repeat;
     background-size: contain;
     @include opacity(0.5);
     @include transform(rotate(50deg));
