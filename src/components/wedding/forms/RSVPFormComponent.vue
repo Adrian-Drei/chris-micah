@@ -723,10 +723,10 @@ export default {
   width: min(520px, 100%);
   padding: 58px 54px 52px;
   overflow: hidden;
-  color: #6d6065;
+  color: #665f50;
   text-align: center;
-  background: #fffaf9;
-  border: 1px solid #d990aa;
+  background: #fbfaf3;
+  border: 1px solid #c9c09f;
   box-shadow: 0 24px 70px rgba(72, 48, 57, 0.28);
 }
 
@@ -735,14 +735,14 @@ export default {
   inset: 10px;
   pointer-events: none;
   content: "";
-  border: 1px solid rgba(217, 144, 170, 0.55);
+  border: 1px solid rgba(175, 164, 123, 0.55);
 }
 
 .rsvp-success-line {
   position: absolute;
   display: block;
   pointer-events: none;
-  background: linear-gradient(90deg, transparent, #d990aa, transparent);
+  background: linear-gradient(90deg, transparent, #afa47b, transparent);
 }
 
 .rsvp-success-line.horizontal {
@@ -758,7 +758,7 @@ export default {
   right: 22px;
   z-index: 2;
   padding: 0;
-  color: #b9778f;
+  color: #817655;
   font-size: 30px;
   font-weight: 300;
   line-height: 1;
@@ -768,13 +768,13 @@ export default {
 
 .rsvp-success-icon {
   margin-bottom: 12px;
-  color: #d990aa;
+  color: #a39870;
   font-size: 46px;
 }
 
 .rsvp-success-kicker {
   margin-bottom: 8px;
-  color: #b9778f;
+  color: #817655;
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.28em;
@@ -783,7 +783,7 @@ export default {
 
 .rsvp-success-modal h2 {
   margin-bottom: 6px;
-  color: #c77896;
+  color: #756a4b;
   font-family: "Playfair Display", serif;
   font-size: clamp(2.4rem, 7vw, 3.6rem);
   font-weight: 400;
@@ -791,7 +791,7 @@ export default {
 
 .rsvp-success-ornament {
   margin: 4px 0 20px;
-  color: #d990aa;
+  color: #a39870;
   font-size: 24px;
 }
 

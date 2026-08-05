@@ -2,13 +2,13 @@
 
 <template>
   <!-- BEGIN TESTIMONIALS SECTION -->
-  <section id="testimonials" class="bg-color side-flowers-light">
+  <section id="testimonials" class="bg-color side-flowers">
     <div class="container">
       <div class="row">
         <div class="col-lg-12 col-xl-10 offset-xl-1">
           <div
             id="testimonials-slider"
-            class="owl-carousel testimonials light"
+            class="owl-carousel testimonials"
             data-animation-direction="from-bottom"
             data-animation-delay="300"
           >

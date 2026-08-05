@@ -196,13 +196,13 @@ const BRIDESMAIDS = [
   text-transform: uppercase;
   letter-spacing: 5px;
   margin-bottom: 12px;
-  color: #c3829e;
+  color: #756a4b;
 }
 
 .divider {
   width: 70px;
   height: 2px;
-  background: #c3829e;
+  background: #ede8d0;
   margin: 0 auto 30px;
 }
 

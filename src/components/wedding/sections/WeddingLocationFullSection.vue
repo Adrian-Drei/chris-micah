@@ -32,9 +32,9 @@ onMounted(async () => {
     });
 
     const pin = new PinElement({
-      background: "#d58ca6",
-      borderColor: "#a85f79",
-      glyphColor: "#ffffff",
+      background: "#ede8d0",
+      borderColor: "#756a4b",
+      glyphColor: "#4f493b",
       scale: 1.15,
     });
 
@@ -125,13 +125,13 @@ onMounted(async () => {
   justify-content: center;
   flex-direction: column;
   gap: 12px;
-  color: #8a6875;
+  color: #665f50;
   text-align: center;
-  background: #fff7f8;
+  background: #f8f5e8;
 }
 
 .map-error i {
-  color: #d58ca6;
+  color: #817655;
   font-size: 36px;
 }
 

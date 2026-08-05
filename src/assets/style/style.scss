@@ -43,11 +43,12 @@
 
 /* #Variables
 ================================================== */
-$color: #c3829e;
-$text-color: #73777b;
-$sat-color: #562135;
-$color-overlay: #fff5f2;
-$section-bg-color: #f9f9f9;
+$color: #4f493b;
+$background-color: #ede8d0;
+$text-color: #4f493b;
+$sat-color: #4f493b;
+$color-overlay: #f8f5e8;
+$section-bg-color: #fbfaf3;
 
 $font-family: "Poppins", sans-serif;
 $highlight-ff: "Playfair Display", serif;
@@ -520,17 +521,17 @@ section {
 }
 
 .bg-color {
-  background-color: $color;
-  color: #fff;
+  background-color: $background-color;
+  color: $sat-color;
 
   a:not(.btn) {
-    color: #fff;
-    background: linear-gradient(#fff, #fff) no-repeat 0 100%;
+    color: $sat-color;
+    background: linear-gradient($sat-color, $sat-color) no-repeat 0 100%;
     background-size: 100% 1px;
     @include transition(background-size 0.3s ease-out, color 0.3s ease-out);
 
     &:hover {
-      color: #fff;
+      color: $sat-color;
       background-size: 0 1px;
     }
   }
@@ -542,7 +543,7 @@ section {
   h4,
   h5,
   .sn-icons a {
-    color: #fff;
+    color: $sat-color;
   }
 }
 
@@ -626,7 +627,7 @@ p.center {
   --offset: 7px;
   --border-size: 1px;
   display: inline-block;
-  color: $color;
+  color: $sat-color;
   background: transparent;
   position: relative;
   margin: 15px;
@@ -650,8 +651,8 @@ p.center {
   &:focus,
   &:active {
     background: transparent;
-    border-color: $color;
-    color: $color;
+    border-color: $sat-color;
+    color: $sat-color;
     @include box-shadow(none);
 
     .h-lines {
@@ -703,7 +704,7 @@ p.center {
   position: fixed;
   bottom: 25px;
   right: 15px;
-  color: $color;
+  color: $sat-color;
 
   width: 50px;
   height: 50px;
@@ -727,14 +728,14 @@ p.center {
 }
 
 .btn-primary {
-  color: $color;
+  color: $sat-color;
 
   &:hover,
   &:focus,
   &:active {
     background: rgba($color, 0.05);
-    border-color: $color;
-    color: $color;
+    border-color: $sat-color;
+    color: $sat-color;
   }
 
   &:active:focus {
@@ -743,9 +744,9 @@ p.center {
 
   &.disabled,
   &:disabled {
-    color: $color;
+    color: $sat-color;
     background-color: rgba($color, 0.05);
-    border-color: $color;
+    border-color: $sat-color;
 
     .h-lines {
       transform: scaleX(0);
@@ -1115,7 +1116,7 @@ p.center {
       @include transition(all 0.3s ease);
 
       &:hover {
-        background-color: $color;
+  background-color: $background-color;
         color: #fff;
       }
     }
@@ -1709,7 +1710,7 @@ p.center {
 }
 
 #nav-mobile-btn {
-  background-color: $color;
+  background-color: $background-color;
   border: 0;
   color: #fff;
   font-size: 28px;
@@ -1736,7 +1737,7 @@ p.center {
 
     &:active,
     &:hover {
-      background-color: $color;
+  background-color: $background-color;
     }
   }
 
@@ -1974,7 +1975,7 @@ p.center {
       bottom: -34px;
       left: 50%;
       margin-left: -50px;
-      background-color: $color;
+  background-color: $background-color;
     }
 
     &.light {
@@ -2066,6 +2067,21 @@ p.center {
 
   &.light {
     color: #fff;
+  }
+}
+
+// The hero sits over a very light floral photograph. Use the deep taupe from
+// the palette for readable copy while keeping beige for decorative artwork.
+#hero {
+  .hero-wrapper h2,
+  .hero-title,
+  .hero-subtitle {
+    color: $sat-color;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
+  }
+
+  .hero-wrapper h1.hero-title::after {
+    background-color: $sat-color;
   }
 }
 
@@ -2695,25 +2711,25 @@ p.center {
       --offset: 7px;
       --border-size: 1px;
       font-family: $highlight-ff;
-      color: $color;
+      color: $sat-color;
       font-size: 27pt;
       position: relative;
       padding: 4px 32px;
 
       .h-lines {
-        border-top-color: $color;
-        border-bottom-color: $color;
+        border-top-color: rgba($sat-color, 0.45);
+        border-bottom-color: rgba($sat-color, 0.45);
       }
 
       .v-lines {
-        border-left-color: $color;
-        border-right-color: $color;
+        border-left-color: rgba($sat-color, 0.45);
+        border-right-color: rgba($sat-color, 0.45);
       }
     }
   }
 
   .date {
-    background-color: $color;
+  background-color: $background-color;
     border: 10px solid #fff;
     padding: 26px 22px;
     display: inline-block;
@@ -2726,19 +2742,19 @@ p.center {
       --offset: 7px;
       --border-size: 1px;
       font-family: $highlight-ff;
-      color: #fff;
+      color: $sat-color;
       font-size: 18pt;
       position: relative;
       padding: 8px 18px;
 
       .h-lines {
-        border-top-color: rgba(255, 255, 255, 0.3);
-        border-bottom-color: rgba(255, 255, 255, 0.3);
+        border-top-color: rgba($sat-color, 0.35);
+        border-bottom-color: rgba($sat-color, 0.35);
       }
 
       .v-lines {
-        border-left-color: rgba(255, 255, 255, 0.3);
-        border-right-color: rgba(255, 255, 255, 0.3);
+        border-left-color: rgba($sat-color, 0.35);
+        border-right-color: rgba($sat-color, 0.35);
       }
     }
   }
@@ -2749,7 +2765,7 @@ p.center {
   }
 
   .description {
-    background-color: $color;
+  background-color: $background-color;
     border: 10px solid #fff;
     padding: 30px;
     display: inline-block;
@@ -2760,18 +2776,18 @@ p.center {
     .neela-style {
       --offset: 9px;
       --border-size: 1px;
-      color: #fff;
+      color: $sat-color;
       position: relative;
       padding: 30px 20px;
 
       .h-lines {
-        border-top-color: rgba(255, 255, 255, 0.3);
-        border-bottom-color: rgba(255, 255, 255, 0.3);
+        border-top-color: rgba($sat-color, 0.35);
+        border-bottom-color: rgba($sat-color, 0.35);
       }
 
       .v-lines {
-        border-left-color: rgba(255, 255, 255, 0.3);
-        border-right-color: rgba(255, 255, 255, 0.3);
+        border-left-color: rgba($sat-color, 0.35);
+        border-right-color: rgba($sat-color, 0.35);
       }
     }
 
@@ -2781,7 +2797,7 @@ p.center {
       margin: 0 auto 15px;
       position: relative;
       padding-bottom: 40px;
-      color: #fff;
+      color: $sat-color;
       display: inline-block;
       font-family: $highlight-ff;
 
@@ -2795,6 +2811,7 @@ p.center {
         background-position: center center;
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='19' viewBox='0 0 140 19'%3E%3Cpath fill='none' fill-rule='evenodd' stroke='%23fff' stroke-width='1.5px' d='M64,2.022L71.87,9.5,64,16.976,56.132,9.5Z'/%3E%3Cpath fill='none' fill-rule='evenodd' stroke='%23fff' stroke-width='1.5px' d='M70,2.022L77.882,9.5,70,16.976,62.119,9.5Z'/%3E%3Cpath fill='none' fill-rule='evenodd' stroke='%23fff' stroke-width='1.5px' d='M77,2.022L84.869,9.5,77,16.976,69.13,9.5Z'/%3E%3Cpath fill='%23fff' fill-rule='evenodd' d='M90.014,10.017V9H389v1.017H90.014Z'/%3E%3Cpath fill='%23fff' fill-rule='evenodd' d='M-245,10.017V9H50.986v1.017H-245Z'/%3E%3C/svg%3E");
         background-repeat: no-repeat;
+        filter: brightness(0);
         @include opacity(0.4);
       }
 
@@ -3335,7 +3352,7 @@ p.center {
 
 .menu-section {
   position: relative;
-  background-color: $color;
+  background-color: $background-color;
 
   &::before {
     content: " ";
@@ -3344,14 +3361,14 @@ p.center {
     right: 0;
     width: 33.3%;
     height: 100%;
-    background-color: $color;
+  background-color: $background-color;
     z-index: 0;
   }
 }
 
 .menu-wrapper {
   padding: 60px 56px;
-  background-color: $color;
+  background-color: $background-color;
   color: #fff;
   z-index: 1;
 
@@ -3524,7 +3541,7 @@ p.center {
     z-index: 1;
 
     .location-info {
-      background-color: $color;
+  background-color: $background-color;
       border: 10px solid #fff;
       padding: 30px;
       display: inline-block;
@@ -3688,7 +3705,7 @@ p.center {
   }
 
   &:hover {
-    background-color: $color;
+  background-color: $background-color;
     border-color: #fff;
     color: #fff;
 
@@ -3854,8 +3871,14 @@ p.center {
 .map_pins_full {
   padding: 11px 0;
   text-align: center;
-  background-color: $color;
-  color: #fff;
+  background-color: $background-color;
+  color: $color;
+
+  a,
+  i,
+  .fa {
+    color: $color;
+  }
 
   .pins {
     list-style: none;
@@ -3916,7 +3939,7 @@ p.center {
 .bmaid-gmen-color {
   .image {
     .hover-info {
-      background-color: $color;
+  background-color: $background-color;
 
       .h-lines {
         border-top-color: #fff;
@@ -4431,7 +4454,7 @@ section.side-flowers {
   padding-top: 120px;
   padding-bottom: 60px;
   position: relative;
-  background-color: $color;
+  background-color: $background-color;
   background-position: center center;
   background-attachment: fixed;
   background-size: cover;
@@ -5315,7 +5338,7 @@ section.side-flowers {
 }
 
 .widget-newsletter {
-  background-color: $color;
+  background-color: $background-color;
   color: #fff;
   padding: 30px;
   text-align: center;
@@ -5676,7 +5699,7 @@ textarea.form-control {
 }
 
 .form-check-input:checked {
-  background-color: $color;
+  background-color: $background-color;
 }
 
 .form-check-input[type="radio"] {
