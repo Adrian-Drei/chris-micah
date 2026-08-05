@@ -1116,7 +1116,7 @@ p.center {
       @include transition(all 0.3s ease);
 
       &:hover {
-  background-color: $background-color;
+        background-color: $background-color;
         color: #fff;
       }
     }
@@ -1737,7 +1737,7 @@ p.center {
 
     &:active,
     &:hover {
-  background-color: $background-color;
+      background-color: $background-color;
     }
   }
 
@@ -1975,7 +1975,7 @@ p.center {
       bottom: -34px;
       left: 50%;
       margin-left: -50px;
-  background-color: $background-color;
+      background-color: $background-color;
     }
 
     &.light {
@@ -2729,7 +2729,7 @@ p.center {
   }
 
   .date {
-  background-color: $background-color;
+    background-color: $background-color;
     border: 10px solid #fff;
     padding: 26px 22px;
     display: inline-block;
@@ -2765,7 +2765,7 @@ p.center {
   }
 
   .description {
-  background-color: $background-color;
+    background-color: $background-color;
     border: 10px solid #fff;
     padding: 30px;
     display: inline-block;
@@ -3361,7 +3361,7 @@ p.center {
     right: 0;
     width: 33.3%;
     height: 100%;
-  background-color: $background-color;
+    background-color: $background-color;
     z-index: 0;
   }
 }
@@ -3541,7 +3541,7 @@ p.center {
     z-index: 1;
 
     .location-info {
-  background-color: $background-color;
+      background-color: $background-color;
       border: 10px solid #fff;
       padding: 30px;
       display: inline-block;
@@ -3705,7 +3705,7 @@ p.center {
   }
 
   &:hover {
-  background-color: $background-color;
+    background-color: $background-color;
     border-color: #fff;
     color: #fff;
 
@@ -3939,7 +3939,7 @@ p.center {
 .bmaid-gmen-color {
   .image {
     .hover-info {
-  background-color: $background-color;
+      background-color: $background-color;
 
       .h-lines {
         border-top-color: #fff;
@@ -5827,7 +5827,8 @@ textarea.form-control {
     background-repeat: no-repeat;
     background-color: #4f493b;
     background-image: none;
-    -webkit-mask: url(/src/assets/images/flower-small.svg) center / contain no-repeat;
+    -webkit-mask: url(/src/assets/images/flower-small.svg) center / contain
+      no-repeat;
     mask: url(/src/assets/images/flower-small.svg) center / contain no-repeat;
     background-size: contain;
     @include opacity(0.5);
@@ -6882,6 +6883,52 @@ textarea.form-control {
 }
 
 @media (max-width: 576px) {
+  .section-title,
+  .section-title-md {
+    font-size: 30px;
+    line-height: 1.15;
+  }
+
+  .section-title-md small {
+    font-size: 22px;
+    line-height: 1.25;
+  }
+
+  .testimonials .owl-item .item {
+    blockquote {
+      padding: 16px 38px;
+      font-size: 18px;
+      line-height: 1.6;
+
+      &::before,
+      &::after {
+        font-size: 76px;
+        margin-top: -38px;
+      }
+    }
+
+    .author {
+      margin-top: 28px;
+
+      h3 {
+        font-size: 27px;
+        line-height: 1.25;
+      }
+    }
+  }
+
+  .bmaid-gmen h5,
+  .bmaid-gmen-color h5 {
+    font-size: 22px;
+    line-height: 1.3;
+  }
+
+  #about-us h3,
+  .party-title {
+    font-size: 28px;
+    line-height: 1.25;
+  }
+
   .padding-divider-top {
     padding-top: 70px;
   }
@@ -7030,22 +7077,23 @@ textarea.form-control {
   }
 
   h1.section-title {
-    font-size: 28pt;
+    font-size: 30px;
   }
 
   h1.page-title {
-    font-size: 28pt;
+    font-size: 30px;
   }
 
   .section-desc h1 {
-    font-size: 30pt;
+    font-size: 30px;
   }
 
   .section-title-lg {
-    font-size: 50pt;
+    font-size: 34px;
+    line-height: 1.15;
 
     small {
-      font-size: 30pt;
+      font-size: 22px;
     }
   }
 
@@ -7076,7 +7124,7 @@ textarea.form-control {
   }
 
   .timeline_footer .punchline {
-    font-size: 34pt;
+    font-size: 32px;
 
     small {
       font-size: 14pt;
