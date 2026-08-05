@@ -26,6 +26,7 @@
             <div class="footer-info right">Contact No: 09636325881</div>
           </div>
         </div>
+        <p class="footer-hashtag">#MICAHyakapnasiCHRIS</p>
       </div>
     </div>
   </footer>
@@ -33,6 +34,16 @@
 </template>
 
 <style scoped>
+.footer-hashtag {
+  margin: 8px 0 4px;
+  color: #4f493b;
+  font-family: "Playfair Display", serif;
+  font-size: 0.9rem;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
 @media (max-width: 575px) {
   #footer-onepage .footer-widget-area {
     padding-top: 36px;
@@ -40,6 +51,11 @@
 
   #footer-onepage .footer-info.left {
     margin-bottom: 14px;
+  }
+
+  .footer-hashtag {
+    margin-top: 16px;
+    overflow-wrap: anywhere;
   }
 }
 </style>

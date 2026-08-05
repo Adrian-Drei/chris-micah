@@ -38,7 +38,13 @@
             >
               <span>October 13, 2026</span>
             </div>
-
+            <p
+              class="hero-hashtag"
+              data-animation-direction="fade"
+              data-animation-delay="1200"
+            >
+              #MICAHyakapnasiCHRIS
+            </p>
           </div>
         </div>
       </div>
@@ -47,4 +53,21 @@
   <!-- END HERO SECTION -->
 </template>
 
-<style scoped></style>
+<style scoped>
+.hero-hashtag {
+  margin: 22px 0 0;
+  color: #4f493b;
+  font-family: "Playfair Display", serif;
+  font-size: 1rem;
+  font-style: italic;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 575px) {
+  .hero-hashtag {
+    margin-top: 16px;
+    font-size: 0.86rem;
+    letter-spacing: 0.04em;
+  }
+}
+</style>

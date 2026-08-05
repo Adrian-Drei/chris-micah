@@ -24,6 +24,7 @@ const openInvitation = async () => {
         We would be honored to have you share in the joy of our wedding day.
       </p>
       <p class="welcome-date">October 13, 2026 <span>•</span> Silang, Cavite</p>
+      <p class="welcome-hashtag">#MICAHyakapnasiCHRIS</p>
       <button type="button" class="welcome-cta" @click="openInvitation">
         <span>Open our invitation</span>
         <i class="fas fa-arrow-right" aria-hidden="true"></i>
@@ -136,6 +137,15 @@ const openInvitation = async () => {
 }
 .welcome-date span {
   margin: 0 6px;
+}
+
+.welcome-hashtag {
+  margin: -18px 0 28px;
+  color: #4f493b;
+  font-family: "Playfair Display", serif;
+  font-size: 0.92rem;
+  font-style: italic;
+  letter-spacing: 0.04em;
 }
 
 .welcome-cta {

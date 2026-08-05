@@ -488,6 +488,7 @@ export default {
           Your RSVP has been received. You will be dearly missed on our special
           day.
         </p>
+        <p class="rsvp-success-hashtag">#MICAHyakapnasiCHRIS</p>
         <button
           type="button"
           class="btn btn-primary rsvp-success-button"
@@ -1030,7 +1031,17 @@ export default {
   font-size: 24px;
 }
 
-.rsvp-success-modal p:not(.rsvp-success-kicker) {
+.rsvp-success-modal .rsvp-success-hashtag {
+  margin: 18px 0 4px;
+  color: #4f493b;
+  font-family: "Playfair Display", serif;
+  font-size: 0.9rem;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  overflow-wrap: anywhere;
+}
+
+.rsvp-success-modal p:not(.rsvp-success-kicker):not(.rsvp-success-hashtag) {
   max-width: 370px;
   margin: 0 auto 28px;
   font-size: 1rem;
