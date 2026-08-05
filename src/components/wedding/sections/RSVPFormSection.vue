@@ -7,7 +7,7 @@ import RSVPFormComponent from "../forms/RSVPFormComponent.vue";
   <section id="rsvp" class="section-bg-color overflow-content-over">
     <div class="side-flowers"></div>
 
-    <div class="container">
+    <div class="container max-lg:pb-20">
       <div class="row gx-6">
         <div class="col-xl-6 col-lg-5 overflow-image-wrapper center">
           <i
@@ -22,14 +22,12 @@ import RSVPFormComponent from "../forms/RSVPFormComponent.vue";
               2026, and invite you to share this wonderful moment with them.
             </p>
             <p>
-              The wedding celebrations will take place over several days.
-              Please complete the invitation form. Feel free to contact us if
-              you have any questions.
+              The wedding celebrations will take place over several days. Please
+              complete the invitation form. Feel free to contact us if you have
+              any questions.
             </p>
 
-            <a href="/" class="btn btn-primary">
-              Discover our story
-            </a>
+            <a href="/" class="btn btn-primary"> Discover our story </a>
 
             <blockquote class="neela-quote small extra-margin">
               Please RSVP<br />by September 13, 2026

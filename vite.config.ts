@@ -263,6 +263,7 @@ const createMetadataPlugin = (mode: string): Plugin => {
       );
 
       const routeFiles: Record<string, PageMetadata> = {
+        "welcome/index.html": pageMetadata.welcome,
         "rsvp/index.html": pageMetadata.rsvp,
         "responses/index.html": pageMetadata.responses,
         "khmer-ceremony/index.html": pageMetadata.khmerCeremony,

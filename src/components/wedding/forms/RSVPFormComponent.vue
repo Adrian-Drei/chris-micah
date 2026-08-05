@@ -12,10 +12,7 @@ import RSVPSupabaseDataServices, {
   type RSVPWeddingGuests,
 } from "@/services/supabase/RSVPDataServices";
 
-import {
-  WEDDING_EVENTS,
-  weddingEventsIconsMapping,
-} from "./helpers";
+import { WEDDING_EVENTS, weddingEventsIconsMapping } from "./helpers";
 
 const MAX_GUESTS_BY_EVENT = 8;
 const REQUIRED_IF_WEDDING_CHOICES = "requiredIfWeddingChoices";
@@ -90,9 +87,7 @@ export default {
         },
         RSVPWeddingGuests: {
           [WEDDING_EVENTS.KHMER_CEREMONY]: {
-            [REQUIRED_IF_GUESTS_LIST_AVAILABLE]: requiredIf(
-              false
-            ),
+            [REQUIRED_IF_GUESTS_LIST_AVAILABLE]: requiredIf(false),
             $each: helpers.forEach({
               name: { required },
               firstName: { required },
@@ -100,9 +95,7 @@ export default {
             }),
           },
           [WEDDING_EVENTS.CHURCH_CEREMONY]: {
-            [REQUIRED_IF_GUESTS_LIST_AVAILABLE]: requiredIf(
-              false
-            ),
+            [REQUIRED_IF_GUESTS_LIST_AVAILABLE]: requiredIf(false),
             $each: helpers.forEach({
               name: { required },
               firstName: { required },
@@ -110,9 +103,7 @@ export default {
             }),
           },
           [WEDDING_EVENTS.CELEBRATION]: {
-            [REQUIRED_IF_GUESTS_LIST_AVAILABLE]: requiredIf(
-              false
-            ),
+            [REQUIRED_IF_GUESTS_LIST_AVAILABLE]: requiredIf(false),
             $each: helpers.forEach({
               name: { required },
               firstName: { required },
@@ -120,9 +111,7 @@ export default {
             }),
           },
           [WEDDING_EVENTS.BRUNCH]: {
-            [REQUIRED_IF_GUESTS_LIST_AVAILABLE]: requiredIf(
-              false
-            ),
+            [REQUIRED_IF_GUESTS_LIST_AVAILABLE]: requiredIf(false),
             $each: helpers.forEach({
               name: { required },
               firstName: { required },
@@ -320,13 +309,24 @@ export default {
   <!-- BEGIN RSVP FORM -->
   <div class="col-xl-6 col-lg-7">
     <div
-      class="form-wrapper no-shadow overflow neela-style"
+      class="form-wrapper no-shadow overflow neela-style rsvp-form-card"
       data-animation-direction="from-right"
       data-animation-delay="250"
     >
-      <h3 class="section-title">Will you join us?</h3>
+      <header class="rsvp-form-heading">
+        <i class="icon-diamond-ring" aria-hidden="true"></i>
+        <p class="rsvp-form-eyebrow">Chris & Micah</p>
+        <h3>Will you join us?</h3>
+        <div class="rsvp-form-ornament" aria-hidden="true"><span>❦</span></div>
+        <p class="rsvp-form-intro">Kindly respond by September 13, 2026</p>
+      </header>
 
-      <form id="form-rsvp" ref="form-rsvp" class="mx-2">
+      <form
+        id="form-rsvp"
+        ref="form-rsvp"
+        class="rsvp-form"
+        @submit.prevent="sendRSVP"
+      >
         <!-- RSVPName field -->
         <div v-show="v$.RSVPName.$error" class="invalid-field">
           Please complete this field.
@@ -363,8 +363,9 @@ export default {
         <div v-show="v$.RSVPIsComing.$error" class="invalid-field">
           Please select an option.
         </div>
-        <div class="form-check-wrapper">
-          <div class="form-check form-check-inline">
+        <fieldset class="form-check-wrapper attendance-options">
+          <legend>Will you be attending?</legend>
+          <label for="attend_wedding_yes" class="form-check form-check-inline">
             <input
               class="form-check-input required"
               type="radio"
@@ -373,10 +374,13 @@ export default {
               value="yes"
               v-model="state.RSVPIsComing"
             />
-            <label for="attend_wedding_yes">Yes, I'll be there!</label>
-          </div>
+            <span class="attendance-copy">
+              <span class="attendance-title">Joyfully accepts</span>
+              <small>Yes, I'll be there</small>
+            </span>
+          </label>
 
-          <div class="form-check form-check-inline">
+          <label for="attend_wedding_no" class="form-check form-check-inline">
             <input
               class="form-check-input required"
               type="radio"
@@ -385,9 +389,12 @@ export default {
               value="no"
               v-model="state.RSVPIsComing"
             />
-            <label for="attend_wedding_no">Unfortunately, I can't make it...</label>
-          </div>
-        </div>
+            <span class="attendance-copy">
+              <span class="attendance-title">Regretfully declines</span>
+              <small>I can't make it</small>
+            </span>
+          </label>
+        </fieldset>
 
         <!-- RSVPMessage field -->
         <div class="form-floating">
@@ -402,13 +409,12 @@ export default {
           <label for="message">Message</label>
         </div>
 
-        <div class="center">
+        <div class="rsvp-form-actions">
           <!-- Button send form -->
           <button
-            type="button"
-            class="btn btn-primary"
+            type="submit"
+            class="btn btn-primary rsvp-submit-button"
             :disabled="loading || v$.$invalid"
-            @click="sendRSVP"
           >
             <span
               v-if="loading"
@@ -419,9 +425,6 @@ export default {
             <span v-if="!loading">Submit</span>
             <span v-else class="ms-2">Submitting...</span>
           </button>
-
-          <br />
-          <br />
 
           <!-- Alert message form -->
           <div v-if="alertUser">
@@ -706,6 +709,238 @@ export default {
 </template>
 
 <style scoped>
+.rsvp-form-card {
+  padding: 58px 48px 48px;
+  color: #4f493b;
+  background: linear-gradient(
+      rgba(251, 250, 243, 0.96),
+      rgba(251, 250, 243, 0.96)
+    ),
+    radial-gradient(circle at top, rgba(237, 232, 208, 0.75), transparent 58%);
+  border: 12px solid #fff;
+  box-shadow: 0 24px 70px rgba(79, 73, 59, 0.12);
+}
+
+.rsvp-form-card::before {
+  position: absolute;
+  inset: 8px;
+  z-index: 0;
+  pointer-events: none;
+  content: "";
+  border: 1px solid rgba(79, 73, 59, 0.34);
+}
+
+.rsvp-form-heading {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 35px;
+  text-align: center;
+}
+
+.rsvp-form-heading > i {
+  display: block;
+  margin-bottom: 14px;
+  color: #8a7d56;
+  font-size: 38px;
+}
+
+.rsvp-form-eyebrow {
+  margin: 0 0 9px;
+  color: #746b53;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.rsvp-form-heading h3 {
+  margin: 0;
+  color: #4f493b;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.35rem, 5vw, 3.3rem);
+  font-weight: 400;
+  line-height: 1.12;
+}
+
+.rsvp-form-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 15px auto 12px;
+  color: #847956;
+}
+
+.rsvp-form-ornament::before,
+.rsvp-form-ornament::after {
+  width: 54px;
+  height: 1px;
+  content: "";
+  background: rgba(79, 73, 59, 0.45);
+}
+
+.rsvp-form-ornament span {
+  font-size: 18px;
+}
+
+.rsvp-form-intro {
+  margin: 0;
+  color: #706958;
+  font-size: 0.86rem;
+  letter-spacing: 0.03em;
+}
+
+.rsvp-form {
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.rsvp-form .form-floating {
+  margin-bottom: 16px;
+}
+
+.rsvp-form .form-control {
+  min-height: 58px;
+  color: #4f493b;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(79, 73, 59, 0.24);
+  border-radius: 0;
+  box-shadow: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.rsvp-form .form-control:hover {
+  border-color: rgba(79, 73, 59, 0.46);
+}
+
+.rsvp-form .form-control:focus {
+  background: #fff;
+  border-color: #4f493b;
+  box-shadow: 0 0 0 3px rgba(79, 73, 59, 0.08);
+}
+
+.rsvp-form .form-floating > label {
+  color: #746e60;
+}
+
+.rsvp-form textarea.form-control {
+  min-height: 132px;
+  resize: vertical;
+}
+
+.attendance-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0;
+  margin: 24px 0 18px;
+  border: 0;
+}
+
+.attendance-options legend {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+  color: #4f493b;
+  font-family: "Playfair Display", serif;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  text-align: left;
+}
+
+.attendance-options .form-check {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-height: 78px;
+  padding: 16px;
+  margin: 0;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(79, 73, 59, 0.22);
+  transition: border-color 0.2s ease, background-color 0.2s ease,
+    transform 0.2s ease;
+  cursor: pointer;
+}
+
+.attendance-options .form-check:hover {
+  border-color: rgba(79, 73, 59, 0.52);
+  transform: translateY(-1px);
+}
+
+.attendance-options .form-check:has(input:checked) {
+  background: #ede8d0;
+  border-color: #4f493b;
+}
+
+.attendance-options .form-check-input {
+  flex: 0 0 auto;
+  margin: 3px 0 0;
+}
+
+.attendance-copy {
+  display: block;
+  margin: 0;
+  color: #4f493b;
+  line-height: 1.25;
+  text-align: left;
+}
+
+.attendance-title {
+  display: block;
+  font-family: "Playfair Display", serif;
+  font-size: 1rem;
+}
+
+.attendance-options small {
+  display: block;
+  margin-top: 5px;
+  color: #756e5d;
+  font-size: 0.72rem;
+}
+
+.invalid-field {
+  margin: 4px 0 7px;
+  color: #8f3f4c;
+  font-size: 0.78rem;
+  text-align: left;
+}
+
+.rsvp-form-actions {
+  margin-top: 26px;
+  text-align: center;
+}
+
+.rsvp-submit-button {
+  box-sizing: border-box;
+  max-width: 100%;
+  width: calc(100% - 14px);
+  min-height: 54px;
+  margin: 7px;
+  color: #fbfaf3;
+  background: #4f493b;
+  border-color: #4f493b;
+}
+
+.rsvp-submit-button:hover,
+.rsvp-submit-button:focus,
+.rsvp-submit-button:active {
+  color: #4f493b;
+  background: #ede8d0;
+  border-color: #4f493b;
+}
+
+.rsvp-submit-button:disabled {
+  color: #746e60;
+  background: #e8e3d0;
+  border-color: rgba(79, 73, 59, 0.45);
+  opacity: 1;
+}
+
+.rsvp-form-actions .alert {
+  margin-top: 24px;
+}
+
 .rsvp-success-backdrop {
   position: fixed;
   inset: 0;
@@ -831,6 +1066,34 @@ export default {
 }
 
 @media (max-width: 575px) {
+  .rsvp-form-card {
+    padding: 45px 22px 34px;
+    border-width: 7px;
+  }
+
+  .rsvp-form-card.form-wrapper.overflow {
+    top: 0;
+    margin-bottom: 36px;
+  }
+
+  .rsvp-form-heading {
+    margin-bottom: 28px;
+  }
+
+  .attendance-options {
+    grid-template-columns: 1fr;
+  }
+
+  .attendance-options .form-check {
+    min-height: 70px;
+  }
+
+  .rsvp-submit-button {
+    width: 100% !important;
+    margin-right: 0;
+    margin-left: 0;
+  }
+
   .rsvp-success-modal {
     padding: 48px 28px 42px;
   }

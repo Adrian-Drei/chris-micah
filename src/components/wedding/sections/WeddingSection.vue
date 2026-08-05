@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { RouterLink } from "vue-router";
+</script>
 
 <template>
   <!-- BEGIN THE WEDDING SECTION -->
@@ -65,12 +67,7 @@
 
               <br />
 
-              <a
-                href="/rsvp"
-                class="btn btn-light scrollto"
-              >
-                RSVP
-              </a>
+              <RouterLink to="/rsvp" class="btn btn-light"> RSVP </RouterLink>
             </div>
           </div>
         </div>

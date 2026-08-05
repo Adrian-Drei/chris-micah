@@ -19,6 +19,15 @@ export interface PageMetadata {
 }
 
 export const pageMetadata: Record<string, PageMetadata> = {
+  welcome: {
+    title: formatPageTitle("You're Invited"),
+    description:
+      "Open Chris and Micah's wedding invitation for their celebration on October 13, 2026, in Silang, Cavite.",
+    path: "/welcome",
+    type: "website",
+    image: SOCIAL_PREVIEW_IMAGE,
+    noIndex: true,
+  },
   home: {
     title: "Chris & Micah's Wedding | October 13, 2026",
     description:

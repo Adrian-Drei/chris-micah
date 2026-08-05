@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { RouterView } from "vue-router";
+import { nextTick, onMounted, watch } from "vue";
+import { RouterView, useRoute } from "vue-router";
+import MusicToggle from "@/components/wedding/MusicToggle.vue";
+import { ROUTE_NAMES } from "@/router";
 
 // @ts-ignore
 import Sakura from "@micman/sakura/dist/sakura.min.js";
@@ -8,12 +10,27 @@ import Sakura from "@micman/sakura/dist/sakura.min.js";
 import Neela from "@/assets/js/scripts.js";
 // import { setDescription, setImage, setTitle } from "./helpers";
 
+const route = useRoute();
+let templateDependenciesReady = false;
+
+const initializeTemplate = async () => {
+  if (
+    !templateDependenciesReady ||
+    route.name === ROUTE_NAMES.WELCOME ||
+    Neela.initialized
+  ) {
+    return;
+  }
+
+  await nextTick();
+  Neela.init();
+};
+
 onMounted(async () => {
   // @ts-ignore
   await import("/src/assets/js/ismobile.js");
-
-  /**** Template Script ****/
-  Neela.init();
+  templateDependenciesReady = true;
+  await initializeTemplate();
 
   /**** Sakura JS ****/
   new Sakura("div#wrapper", {
@@ -21,6 +38,12 @@ onMounted(async () => {
     delay: 200,
   });
 });
+
+watch(
+  () => route.name,
+  () => initializeTemplate(),
+  { immediate: true, flush: "post" }
+);
 </script>
 
 <template>
@@ -28,6 +51,7 @@ onMounted(async () => {
     <router-view name="header"></router-view>
     <router-view name="content"></router-view>
     <router-view name="footer"></router-view>
+    <MusicToggle />
   </div>
 </template>
 

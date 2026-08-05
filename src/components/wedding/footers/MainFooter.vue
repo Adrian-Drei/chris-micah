@@ -32,4 +32,14 @@
   <!-- END FOOTER -->
 </template>
 
-<style scoped></style>
+<style scoped>
+@media (max-width: 575px) {
+  #footer-onepage .footer-widget-area {
+    padding-top: 36px;
+  }
+
+  #footer-onepage .footer-info.left {
+    margin-bottom: 14px;
+  }
+}
+</style>

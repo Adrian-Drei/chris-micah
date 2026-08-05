@@ -3,12 +3,19 @@
 export const name = "wedding-mm";
 
 export const ROUTE_NAMES = {
+  WELCOME: `${name}-welcome`,
   HOME: `${name}`,
   RSVP: `${name}-rsvp`,
   RESPONSES: `${name}-responses`,
   KHMER_CEREMONY: `${name}-khmer-ceremony`,
   DENIED: `${name}-denied`,
   NOT_FOUND: `${name}-404`,
+};
+
+let allowNextHomepageEntry = false;
+
+export const openHomepageFromWelcome = () => {
+  allowNextHomepageEntry = true;
 };
 
 import { createRouter, createWebHistory } from "vue-router";
@@ -21,9 +28,16 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: ROUTE_NAMES.HOME,
       component: MainLayout,
       children: [
+        {
+          path: "/welcome",
+          name: ROUTE_NAMES.WELCOME,
+          meta: { metadata: pageMetadata.welcome },
+          components: {
+            content: () => import("../views/WelcomeView.vue"),
+          },
+        },
         {
           path: "/",
           name: ROUTE_NAMES.HOME,
@@ -95,6 +109,17 @@ const router = createRouter({
       ],
     },
   ],
+});
+
+router.beforeEach((to) => {
+  if (to.name === ROUTE_NAMES.HOME) {
+    if (allowNextHomepageEntry) {
+      allowNextHomepageEntry = false;
+      return true;
+    }
+    return { name: ROUTE_NAMES.WELCOME };
+  }
+  return true;
 });
 
 router.afterEach((route) => {

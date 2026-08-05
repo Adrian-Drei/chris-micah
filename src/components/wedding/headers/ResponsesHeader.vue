@@ -7,7 +7,10 @@
         <div class="row">
           <div class="col-sm-12 responses-nav">
             <a href="/" class="nav-logo">
-              <img src="/src/assets/images/wedding_mm/logo_mm.png" alt="Chris and Micah" />
+              <img
+                src="/src/assets/images/wedding_mm/logo_mm.png"
+                alt="Chris and Micah"
+              />
             </a>
             <a href="/" class="back-home">Back to Wedding</a>
           </div>
@@ -30,5 +33,18 @@
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
+}
+
+@media (max-width: 400px) {
+  .responses-nav {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .back-home {
+    max-width: 92px;
+    line-height: 1.45;
+    text-align: right;
+  }
 }
 </style>
