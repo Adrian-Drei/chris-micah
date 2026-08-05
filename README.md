@@ -67,10 +67,32 @@ settings:
 ```sh
 VITE_SUPABASE_URL="https://your-project.supabase.co"
 VITE_SUPABASE_PUBLISHABLE_KEY="your-publishable-key"
+VITE_GOOGLE_MAPS_API_KEY="your-google-maps-api-key"
+VITE_GOOGLE_MAPS_MAP_ID="your-map-id"
 ```
 
 Use a publishable (or legacy anonymous) key in the browser. Never expose the
 Supabase service-role key in a `VITE_` environment variable.
+
+Enable the **Maps JavaScript API** in Google Cloud for the map key. Restrict
+the key to your local and production website referrers, and restrict its API
+access to Maps JavaScript API. A custom map ID is optional; use `DEMO_MAP_ID`
+while developing if you have not created one yet.
+
+### Private RSVP dashboard
+
+The private response dashboard is available at `/responses`. In Supabase,
+create an email/password user under **Authentication → Users**, then add the
+same email to the admin allowlist using the SQL Editor:
+
+```sql
+insert into public.rsvp_admins (email)
+values ('you@example.com')
+on conflict (email) do nothing;
+```
+
+Run the latest `supabase/schema.sql` before using the dashboard. Keep public
+user sign-ups disabled so only manually created administrators can sign in.
 
 #### Compile and Hot-Reload for Development
 

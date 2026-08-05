@@ -50,6 +50,11 @@ type RSVPRow = {
   wedding_guests_state: RSVPWeddingGuestsState;
   meal_preferences: string[];
   message: string | null;
+  created_at?: string;
+};
+
+export type RSVPResponse = RSVP & {
+  createdAt: string;
 };
 
 const toRow = (rsvp: RSVP): RSVPRow => ({
@@ -79,6 +84,35 @@ const fromRow = (row: RSVPRow): RSVP => ({
 });
 
 class RSVPSupabaseDataServices {
+  async signIn(email: string, password: string): Promise<void> {
+    if (!supabase) throw new Error("Supabase is not configured.");
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) throw new Error(error.message);
+  }
+
+  async signOut(): Promise<void> {
+    if (!supabase) return;
+    const { error } = await supabase.auth.signOut();
+    if (error) throw new Error(error.message);
+  }
+
+  async hasSession(): Promise<boolean> {
+    if (!supabase) return false;
+    const { data } = await supabase.auth.getSession();
+    return Boolean(data.session);
+  }
+
+  async getResponses(): Promise<RSVPResponse[]> {
+    if (!supabase) throw new Error("Supabase is not configured.");
+    const { data, error } = await supabase.rpc("list_rsvps");
+    if (error) throw new Error(error.message);
+
+    return ((data as RSVPRow[] | null) ?? []).map((row) => ({
+      ...fromRow(row),
+      createdAt: row.created_at ?? "",
+    }));
+  }
+
   async getById(id: string): Promise<RSVP | null> {
     if (!supabase) return null;
 

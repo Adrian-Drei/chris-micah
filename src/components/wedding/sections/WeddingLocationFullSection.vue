@@ -1,10 +1,53 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import { getQueryParam, KEY_QUERY_PARAM } from "../forms/helpers";
+import { onMounted, ref } from "vue";
+import { importLibrary, setOptions } from "@googlemaps/js-api-loader";
 
-const weddingKey = computed(() => {
-  const key = getQueryParam(KEY_QUERY_PARAM);
-  return key ?? null;
+const mapElement = ref<HTMLElement | null>(null);
+const mapError = ref("");
+const venue = { lat: 14.238514644113346, lng: 121.03768978860317 };
+
+onMounted(async () => {
+  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+  if (!apiKey || apiKey === "not-set-yet") {
+    mapError.value = "Google Maps is not configured yet.";
+    return;
+  }
+
+  try {
+    setOptions({ key: apiKey, v: "weekly" });
+    const { Map } = (await importLibrary("maps")) as google.maps.MapsLibrary;
+    const { AdvancedMarkerElement, PinElement } = (await importLibrary(
+      "marker"
+    )) as google.maps.MarkerLibrary;
+
+    if (!mapElement.value) return;
+
+    const map = new Map(mapElement.value, {
+      center: venue,
+      zoom: 16,
+      mapId: import.meta.env.VITE_GOOGLE_MAPS_MAP_ID || "DEMO_MAP_ID",
+      mapTypeControl: false,
+      streetViewControl: false,
+      fullscreenControl: true,
+    });
+
+    const pin = new PinElement({
+      background: "#d58ca6",
+      borderColor: "#a85f79",
+      glyphColor: "#ffffff",
+      scale: 1.15,
+    });
+
+    new AdvancedMarkerElement({
+      map,
+      position: venue,
+      title: "Chateaux De Paris",
+      content: pin,
+    });
+  } catch (error) {
+    mapError.value = "We could not load the map. Please use the venue link below.";
+    console.error("Google Maps failed to load", error);
+  }
 });
 </script>
 
@@ -19,17 +62,13 @@ const weddingKey = computed(() => {
       </div>
     </div>
 
-    <!-- GOOGLE MAP EMBED -->
+    <!-- GOOGLE MAPS JAVASCRIPT API -->
     <div class="map-wrapper">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d7734.504065943806!2d121.03768978860317!3d14.238514644113346!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sChateaux%20De%20Paris%20South%20Forbes%20Golf%20City%2C%20South%20BLVD%2C%20Silang%204118%20Cavite!5e0!3m2!1sen!2sph!4v1783374109284!5m2!1sen!2sph"
-        width="100%"
-        height="500"
-        style="border: 0"
-        allowfullscreen
-        loading="lazy"
-        referrerpolicy="strict-origin-when-cross-origin"
-      ></iframe>
+      <div ref="mapElement" class="google-map" aria-label="Wedding venue map"></div>
+      <div v-if="mapError" class="map-error">
+        <i class="fas fa-map-marker-alt"></i>
+        <p>{{ mapError }}</p>
+      </div>
     </div>
 
     <div
@@ -41,8 +80,14 @@ const weddingKey = computed(() => {
         <li>
           <i class="fas fa-praying-hands"></i>
           <p>
-            Chateaux De Paris<br />
-            South Forbes Golf City, South Boulevard Silang, Cavite 4118
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Chateaux+De+Paris+South+Forbes+Golf+City+Silang+Cavite"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Chateaux De Paris<br />
+              South Forbes Golf City, South Boulevard Silang, Cavite 4118
+            </a>
           </p>
         </li>
       </ul>
@@ -67,14 +112,35 @@ const weddingKey = computed(() => {
   overflow: hidden;
 }
 
-.map-wrapper iframe {
+.google-map {
   display: block;
   width: 100%;
   height: 500px;
 }
 
+.map-error {
+  display: flex;
+  min-height: 300px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  color: #8a6875;
+  text-align: center;
+  background: #fff7f8;
+}
+
+.map-error i {
+  color: #d58ca6;
+  font-size: 36px;
+}
+
+.pins a {
+  color: inherit;
+}
+
 @media (max-width: 768px) {
-  .map-wrapper iframe {
+  .google-map {
     height: 350px;
   }
 }

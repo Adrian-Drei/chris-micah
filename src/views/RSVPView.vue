@@ -32,12 +32,6 @@ onUnmounted(() => {
 <template>
   <RSVPWeddingSection />
   <RSVPFormSection />
-  <WeddingLocationFullSection />
-  <BridesMaidsAndGroomsMenSection />
-  <WeddingGiftsSection />
-  <GallerySection />
-  <CountdownSection />
-  <TestimonialsSection />
 
   <ScrollToTop v-if="displayScrollToTop" />
 </template>

@@ -80,3 +80,36 @@ revoke all on function public.get_rsvp(text) from public;
 revoke all on function public.upsert_rsvp(jsonb) from public;
 grant execute on function public.get_rsvp(text) to anon, authenticated;
 grant execute on function public.upsert_rsvp(jsonb) to anon, authenticated;
+
+create table if not exists public.rsvp_admins (
+  email text primary key,
+  created_at timestamptz not null default now()
+);
+
+alter table public.rsvp_admins enable row level security;
+revoke all on table public.rsvp_admins from anon, authenticated;
+
+create or replace function public.list_rsvps()
+returns setof public.rsvp
+language plpgsql
+security definer
+set search_path = ''
+as $$
+begin
+  if not exists (
+    select 1
+    from public.rsvp_admins
+    where lower(email) = lower(coalesce(auth.jwt()->>'email', ''))
+  ) then
+    raise exception 'Not authorized to view RSVP responses';
+  end if;
+
+  return query
+  select * from public.rsvp order by created_at desc;
+end;
+$$;
+
+revoke all on function public.list_rsvps() from public;
+grant execute on function public.list_rsvps() to authenticated;
+
+notify pgrst, 'reload schema';

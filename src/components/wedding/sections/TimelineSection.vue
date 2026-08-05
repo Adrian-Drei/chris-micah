@@ -226,7 +226,6 @@ const textDialog =
                   width="590"
                   height="330"
                   allow="autoplay; fullscreen; picture-in-picture"
-                  allowfullscreen
                 ></iframe>
               </div>
 
@@ -298,7 +297,6 @@ const textDialog =
                   width="590"
                   height="330"
                   allow="autoplay; fullscreen; picture-in-picture"
-                  allowfullscreen
                 ></iframe>
               </div>
 
@@ -413,7 +411,6 @@ const textDialog =
                   width="590"
                   height="330"
                   allow="autoplay; fullscreen; picture-in-picture"
-                  allowfullscreen
                 ></iframe>
               </div>
 

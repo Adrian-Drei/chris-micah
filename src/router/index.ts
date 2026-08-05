@@ -5,6 +5,7 @@ export const name = "wedding-mm";
 export const ROUTE_NAMES = {
   HOME: `${name}`,
   RSVP: `${name}-rsvp`,
+  RESPONSES: `${name}-responses`,
   KHMER_CEREMONY: `${name}-khmer-ceremony`,
   DENIED: `${name}-denied`,
   NOT_FOUND: `${name}-404`,
@@ -36,6 +37,15 @@ const router = createRouter({
           components: {
             header: () => import("../components/wedding/headers/RSVPHeader.vue"),
             content: () => import("../views/RSVPView.vue"),
+            footer: () => import("../components/wedding/footers/MainFooter.vue"),
+          },
+        },
+        {
+          path: "/responses",
+          name: ROUTE_NAMES.RESPONSES,
+          components: {
+            header: () => import("../components/wedding/headers/ResponsesHeader.vue"),
+            content: () => import("../views/ResponsesView.vue"),
             footer: () => import("../components/wedding/footers/MainFooter.vue"),
           },
         },

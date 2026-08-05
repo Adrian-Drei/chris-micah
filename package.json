@@ -13,6 +13,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@googlemaps/js-api-loader": "^2.1.1",
     "@micman/sakura": "^1.1.2",
     "@rollup/plugin-inject": "^5.0.2",
     "@supabase/supabase-js": "^2.57.4",
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
+    "@types/google.maps": "^3.65.4",
     "@types/jsdom": "^20.0.0",
     "@types/node": "^16.11.68",
     "@vitejs/plugin-vue": "^3.1.2",

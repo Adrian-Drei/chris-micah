@@ -10,8 +10,6 @@ import Neela from "@/assets/js/scripts.js";
 
 onMounted(async () => {
   // @ts-ignore
-  await import("/src/assets/js/richmarker.js");
-  // @ts-ignore
   await import("/src/assets/js/ismobile.js");
 
   /**** Template Script ****/
