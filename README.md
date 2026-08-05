@@ -12,9 +12,9 @@ I use it to handle and provide all the necessary wedding information for my gues
 The template used comes from [Neela by WiselyThemes](https://themeforest.net/item/neela-onepagemultipage-wedding-html5-template/34245021). I came from this template to convert it into a VueJS application. And adding it new features like:
 - URL parsing, 
 - form validation,
-- connection with Firestore to store all guest responses.
+- connection with Supabase to store all guest responses.
 
-_Note: The Wedding App is translated into French (my wedding was attended in France)._
+_Note: The Wedding App interface is in English._
 
 ![Home Screen](docs/home_screen.gif?raw=true "Home")
 
@@ -59,6 +59,18 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 ```sh
 npm install
 ```
+
+Create a Supabase project, run [`supabase/schema.sql`](supabase/schema.sql) in
+the Supabase SQL editor, then create `.env.local` with your project's API
+settings:
+
+```sh
+VITE_SUPABASE_URL="https://your-project.supabase.co"
+VITE_SUPABASE_PUBLISHABLE_KEY="your-publishable-key"
+```
+
+Use a publishable (or legacy anonymous) key in the browser. Never expose the
+Supabase service-role key in a `VITE_` environment variable.
 
 #### Compile and Hot-Reload for Development
 

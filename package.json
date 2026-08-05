@@ -15,16 +15,15 @@
   "dependencies": {
     "@micman/sakura": "^1.1.2",
     "@rollup/plugin-inject": "^5.0.2",
+    "@supabase/supabase-js": "^2.57.4",
     "@types/jquery": "^3.5.14",
     "@types/uuid": "^9.0.0",
     "@vuelidate/core": "^2.0.0",
     "@vuelidate/validators": "^2.0.0",
-    "firebase": "^9.15.0",
     "jquery": "^3.6.1",
     "pinia": "^2.0.23",
     "uuid": "^9.0.0",
     "vue": "^3.2.41",
-    "vue-recaptcha": "^2.0.3",
     "vue-router": "^4.1.5"
   },
   "devDependencies": {

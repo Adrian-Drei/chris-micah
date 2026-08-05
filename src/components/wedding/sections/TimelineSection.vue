@@ -33,7 +33,7 @@ const textDialog =
                       class="hover-img"
                       :href="getImageFormat('620x430')"
                       data-lightbox="gallery-timeline"
-                      title="Nos premier textos"
+                      title="Our first messages"
                       ><span class="btn btn-light btn-sm">+</span></a
                     >
                     <img :src="getImageFormat('620x430')" alt="" />
@@ -44,7 +44,7 @@ const textDialog =
                       class="hover-img"
                       :href="getImageFormat('620x430')"
                       data-lightbox="gallery-timeline"
-                      title="Nos premier textos"
+                      title="Our first messages"
                       ><span class="btn btn-light btn-sm">+</span></a
                     >
                     <img :src="getImageFormat('620x430')" alt="" />
@@ -55,7 +55,7 @@ const textDialog =
                       class="hover-img"
                       :href="getImageFormat('620x430')"
                       data-lightbox="gallery-timeline"
-                      title="Nos premier textos"
+                      title="Our first messages"
                       ><span class="btn btn-light btn-sm">+</span></a
                     >
                     <img :src="getImageFormat('620x430')" alt="" />
@@ -66,7 +66,7 @@ const textDialog =
                       class="hover-img"
                       :href="getImageFormat('620x430')"
                       data-lightbox="gallery-timeline"
-                      title="Nos premier textos"
+                      title="Our first messages"
                       ><span class="btn btn-light btn-sm">+</span></a
                     >
                     <img :src="getImageFormat('620x430')" alt="" />
@@ -81,8 +81,8 @@ const textDialog =
               >
                 <div class="description">
                   <div class="neela-style">
-                    <h4>Nos premiers textos</h4>
-                    <p>Tout a commencé avec un "Hi"...</p>
+                    <h4>Our first messages</h4>
+                    <p>It all started with a "Hi"...</p>
                     <br />
                     <p>{{ textDialog }} - Michel</p>
                     <br />
@@ -142,7 +142,7 @@ const textDialog =
                   data-animation-delay="250"
                 >
                   <div class="neela-style">
-                    <h4>Notre première rencontre</h4>
+                    <h4>Our first meeting</h4>
                     <p>{{ textDialog }} - Michel</p>
                     <br />
                     <p>{{ textDialog }} - Mélaine</p>
@@ -172,7 +172,7 @@ const textDialog =
                       class="hover-img"
                       :href="getImageFormat('620x430')"
                       data-lightbox="gallery-timeline"
-                      title="Nos premières années"
+                      title="Our first years"
                       ><span class="btn btn-light btn-sm">+</span></a
                     >
                     <img :src="getImageFormat('620x430')" alt="" />
@@ -187,7 +187,7 @@ const textDialog =
               >
                 <div class="description">
                   <div class="neela-style">
-                    <h4>Nos premières années</h4>
+                    <h4>Our first years</h4>
                     <p>
                       {{ textDialog }}
                     </p>
@@ -261,7 +261,7 @@ const textDialog =
                   data-animation-delay="250"
                 >
                   <div class="neela-style">
-                    <h4>Notre premier confinement!</h4>
+                    <h4>Our first lockdown!</h4>
                     <p>{{ textDialog }}</p>
                   </div>
                 </div>
@@ -333,7 +333,7 @@ const textDialog =
                   data-animation-delay="250"
                 >
                   <div class="neela-style">
-                    <h4>Nos fiançailles</h4>
+                    <h4>Our engagement</h4>
                     <p>{{ textDialog }}</p>
                   </div>
                 </div>
@@ -361,7 +361,7 @@ const textDialog =
                       class="hover-img"
                       :href="getImageFormat('620x430')"
                       data-lightbox="gallery-timeline"
-                      title="Nos projets"
+                      title="Our plans"
                       ><span class="btn btn-light btn-sm">+</span></a
                     >
                     <img :src="getImageFormat('620x430')" alt="" />
@@ -376,7 +376,7 @@ const textDialog =
               >
                 <div class="description">
                   <div class="neela-style">
-                    <h4>Nos projets</h4>
+                    <h4>Our plans</h4>
                     <p>{{ textDialog }}</p>
                   </div>
                 </div>
@@ -448,7 +448,7 @@ const textDialog =
                   data-animation-delay="250"
                 >
                   <div class="neela-style">
-                    <h4>Notre union civile</h4>
+                    <h4>Our civil ceremony</h4>
                     <p>{{ textDialog }}</p>
                   </div>
                 </div>
@@ -467,7 +467,7 @@ const textDialog =
               data-animation-direction="from-bottom"
               data-animation-delay="250"
             >
-              <small>Mais le meilleur reste</small>à venir...
+              <small>But the best is yet</small>to come...
             </div>
           </div>
         </div>

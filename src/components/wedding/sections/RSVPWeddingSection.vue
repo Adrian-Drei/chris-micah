@@ -33,17 +33,17 @@
               <div class="row">
                 <div class="col-6">
                   <h2>
-                    Mrs. Jane Doe <br />
+                    Mr. Bernardo Madriaga <br />
                     <small>&</small> <br />
-                    Mr. John Doe
+                    Mrs. Cristina Madriaga
                   </h2>
                 </div>
 
                 <div class="col-6">
                   <h2>
-                    Mrs. Rosalie Roe <br />
+                    Mr. Fernando Badua Jr. <br />
                     <small>&</small> <br />
-                    Mr. Richard Roe
+                    Mrs. Jacqueline Badua
                   </h2>
                 </div>
               </div>
@@ -52,13 +52,13 @@
                 joyfully invite you to celebrate the marriage of their children
               </div>
 
-              <h1 class="my-2">Mélaine <small>&</small> Michel</h1>
+              <h1 class="my-2">Chris <small>&</small> Micah</h1>
 
-              <div class="date">DD MM, YYYY</div>
+              <div class="date">October 13, 2026</div>
 
               <div class="uppercase">
                 <i class="me-1 fas fa-map-marker-alt"></i>
-                Location: Île-de-France
+                Location: Silang, Cavite
               </div>
             </div>
           </div>

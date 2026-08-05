@@ -6,9 +6,9 @@
       <br /><br /><br /><br /><br /><br />
       <div class="row">
         <div class="col center">
-          <h3>Vous n'avez pas le droit d'accéder à cette page</h3>
-          <p class="cta">La page que vous recherchez n'est pas disponible.</p>
-          <a href="/" class="btn btn-primary">Retour à l'accueil</a>
+          <h3>You do not have permission to access this page</h3>
+          <p class="cta">The page you are looking for is unavailable.</p>
+          <a href="/" class="btn btn-primary">Back to home</a>
         </div>
       </div>
     </div>

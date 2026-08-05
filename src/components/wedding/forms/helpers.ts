@@ -5,9 +5,9 @@ import { getCurrentInstance } from "vue";
 export const DEFAULT_NAMESPACE = import.meta.env.VITE_UUID_DEFAULT_NAMESPACE || "env-not-set";
 
 export enum WEDDING_EVENTS {
-  KHMER_CEREMONY = "Cérémonie Cambodgienne",
-  CHURCH_CEREMONY = "Cérémonie Eglise",
-  CELEBRATION = "Réception Domaine",
+  KHMER_CEREMONY = "Cambodian Ceremony",
+  CHURCH_CEREMONY = "Church Ceremony",
+  CELEBRATION = "Estate Reception",
   BRUNCH = "Brunch",
 }
 
@@ -58,11 +58,11 @@ export const weddingEventsIconsMapping: Record<WEDDING_EVENTS, string> = {
 };
 
 export const mealPreferences = [
-  "Végétarien",
+  "Vegetarian",
   "Vegan",
-  "Sans gluten",
-  "Kasher",
-  "Pas de porc",
+  "Gluten-free",
+  "Kosher",
+  "No pork",
 ];
 
 ////////////////////////////////////////////////////////////////

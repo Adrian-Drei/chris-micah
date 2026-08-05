@@ -1,12 +1,4 @@
-<script setup lang="ts">
-import { computed } from "vue";
-import { getQueryParam, KEY_QUERY_PARAM } from "../forms/helpers";
-
-const weddingKey = computed(() => {
-  const key = getQueryParam(KEY_QUERY_PARAM);
-  return key ?? null;
-});
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <!-- BEGIN THE WEDDING SECTION -->
@@ -43,7 +35,7 @@ const weddingKey = computed(() => {
               <div class="row">
                 <div class="col-6">
                   <h2>
-                    Mr. Bernardo Madriage <br />
+                    Mr. Bernardo Madriaga <br />
                     <small>&</small> <br />
                     Mrs. Cristina Madriaga
                   </h2>
@@ -74,7 +66,7 @@ const weddingKey = computed(() => {
               <br />
 
               <a
-                :href="'/rsvp?key=' + weddingKey"
+                href="/rsvp"
                 class="btn btn-light scrollto"
               >
                 RSVP

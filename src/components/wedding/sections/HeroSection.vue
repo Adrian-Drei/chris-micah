@@ -1,12 +1,4 @@
-<script setup lang="ts">
-import { computed } from "vue";
-import { getQueryParam, KEY_QUERY_PARAM } from "../forms/helpers";
-
-const weddingKey = computed(() => {
-  const key = getQueryParam(KEY_QUERY_PARAM);
-  return key ?? null;
-});
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <!-- BEGIN HERO SECTION -->
@@ -47,14 +39,6 @@ const weddingKey = computed(() => {
               <span>October 13, 2026</span>
             </div>
 
-            <div data-animation-direction="fade" data-animation-delay="1000">
-              <a
-                :href="'/rsvp?key=' + weddingKey"
-                class="btn btn-primary scrollto"
-              >
-                Confirm your presence
-              </a>
-            </div>
           </div>
         </div>
       </div>

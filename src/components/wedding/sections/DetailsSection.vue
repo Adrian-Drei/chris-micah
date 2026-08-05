@@ -61,23 +61,6 @@ const dressColors = [
         <span>❦</span>
       </div>
 
-      <!-- RSVP -->
-      <div class="detail-card">
-        <h3 class="detail-title">RSVP</h3>
-
-        <p class="detail-text">
-          We have reserved seats especially for you. Kindly confirm your
-          attendance on or before
-          <strong>August 31, 2026</strong>.
-        </p>
-
-        <a href="/rsvp" class="btn btn-primary mt-4"> Confirm Attendance </a>
-      </div>
-
-      <div class="divider-floral">
-        <span>❦</span>
-      </div>
-
       <!-- Privacy -->
       <div class="detail-card">
         <h3 class="detail-title">Privacy Note</h3>

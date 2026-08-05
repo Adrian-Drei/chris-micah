@@ -1,35 +1,21 @@
 <script lang="ts">
-import { onBeforeMount, computed, ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import type { Ref } from "vue";
-
-import { useRouter } from "vue-router";
-
-import Recaptcha, {
-  EMIT_RECAPTCHA_FAILURE,
-  EMIT_RECAPTCHA_SUCCESS,
-} from "@/components/recaptcha/Recaptcha.vue";
 
 import useVuelidate from "@vuelidate/core";
 import { helpers, required, email, requiredIf } from "@vuelidate/validators";
 
-import RSVPFirestoreDataServices, {
+import RSVPSupabaseDataServices, {
   GUEST_TYPES,
   type RSVP,
   type RSVPWeddingGuest,
   type RSVPWeddingGuests,
-} from "@/services/firestore/RSVPDataServices";
+} from "@/services/supabase/RSVPDataServices";
 
 import {
   WEDDING_EVENTS,
-  WEDDING_SCOPES,
-  weddingChoicesEventsMapping,
   weddingEventsIconsMapping,
-  scopesFamiliesMapping,
-  mealPreferences,
-  getQueryParam,
-  KEY_QUERY_PARAM,
 } from "./helpers";
-import { ROUTE_NAMES } from "@/router";
 
 const MAX_GUESTS_BY_EVENT = 8;
 const REQUIRED_IF_WEDDING_CHOICES = "requiredIfWeddingChoices";
@@ -58,37 +44,6 @@ declare type AlertUser = {
 
 export default {
   setup() {
-    // Use vue router
-    const router = useRouter();
-
-    // Wedding scopes, families and events
-    const weddingKey = computed(() => {
-      const key = getQueryParam(KEY_QUERY_PARAM);
-      return key ?? null;
-    });
-    const weddingScope = computed(() => {
-      const scope = Object.values(WEDDING_SCOPES).find(
-        (scope: WEDDING_SCOPES) => {
-          const familyRecord = scopesFamiliesMapping[scope];
-          return Object.keys(familyRecord).find(
-            (familyKey: string) => familyKey === weddingKey.value
-          );
-        }
-      );
-      return (scope as WEDDING_SCOPES) ?? null;
-    });
-    const weddingEvents = computed(() => {
-      return weddingScope.value &&
-        weddingChoicesEventsMapping[weddingScope.value]
-        ? weddingChoicesEventsMapping[weddingScope.value]
-        : [];
-    });
-    const familyListByScope = computed(() => {
-      if (weddingScope.value === null) return null;
-
-      const familyRecord = scopesFamiliesMapping[weddingScope.value];
-      return weddingKey.value ? familyRecord[weddingKey.value] : null;
-    });
     const weddingIcon = weddingEventsIconsMapping;
 
     // Form refs
@@ -96,7 +51,7 @@ export default {
       RSVPName: "",
       RSVPEmail: "",
       RSVPIsComing: "yes",
-      RSVPWeddingChoices: [],
+      RSVPWeddingChoices: [WEDDING_EVENTS.CELEBRATION],
       RSVPWeddingGuests: {
         [WEDDING_EVENTS.KHMER_CEREMONY]: [],
         [WEDDING_EVENTS.CHURCH_CEREMONY]: [],
@@ -111,19 +66,6 @@ export default {
       [WEDDING_EVENTS.CHURCH_CEREMONY]: true,
       [WEDDING_EVENTS.CELEBRATION]: true,
       [WEDDING_EVENTS.BRUNCH]: true,
-    });
-
-    const isGuestsListAvailable = (weddingEvent: WEDDING_EVENTS) => {
-      return weddingChoicesSorted.value.includes(weddingEvent);
-    };
-
-    const isGuestsListAvailableError = computed(() => {
-      return (
-        v$.value.RSVPWeddingGuests.$invalid &&
-        v$.value.RSVPWeddingGuests.$silentErrors.find(
-          (error) => error.$validator === REQUIRED_IF_GUESTS_LIST_AVAILABLE
-        )
-      );
     });
 
     const weddingChoicesSorted = computed(() => {
@@ -149,7 +91,7 @@ export default {
         RSVPWeddingGuests: {
           [WEDDING_EVENTS.KHMER_CEREMONY]: {
             [REQUIRED_IF_GUESTS_LIST_AVAILABLE]: requiredIf(
-              isGuestsListAvailable(WEDDING_EVENTS.KHMER_CEREMONY)
+              false
             ),
             $each: helpers.forEach({
               name: { required },
@@ -159,7 +101,7 @@ export default {
           },
           [WEDDING_EVENTS.CHURCH_CEREMONY]: {
             [REQUIRED_IF_GUESTS_LIST_AVAILABLE]: requiredIf(
-              isGuestsListAvailable(WEDDING_EVENTS.CHURCH_CEREMONY)
+              false
             ),
             $each: helpers.forEach({
               name: { required },
@@ -169,7 +111,7 @@ export default {
           },
           [WEDDING_EVENTS.CELEBRATION]: {
             [REQUIRED_IF_GUESTS_LIST_AVAILABLE]: requiredIf(
-              isGuestsListAvailable(WEDDING_EVENTS.CELEBRATION)
+              false
             ),
             $each: helpers.forEach({
               name: { required },
@@ -179,7 +121,7 @@ export default {
           },
           [WEDDING_EVENTS.BRUNCH]: {
             [REQUIRED_IF_GUESTS_LIST_AVAILABLE]: requiredIf(
-              isGuestsListAvailable(WEDDING_EVENTS.BRUNCH)
+              false
             ),
             $each: helpers.forEach({
               name: { required },
@@ -205,6 +147,8 @@ export default {
             [WEDDING_EVENTS.BRUNCH]: [],
           };
           state.value.RSVPMealPreferences = [];
+        } else if (!state.value.RSVPWeddingChoices.length) {
+          state.value.RSVPWeddingChoices = [WEDDING_EVENTS.CELEBRATION];
         }
       }
     );
@@ -238,17 +182,10 @@ export default {
       { deep: true }
     );
 
-    onBeforeMount(() => {
-      // If weddingKey related to any  wedding scope
-      if (weddingScope.value === null) {
-        router.push({ name: ROUTE_NAMES.DENIED });
-      }
-
-      loadRSVP();
-    });
-
     const loading = ref(false);
     const alertUser: Ref<AlertUser | null> = ref(null);
+    const showSuccessModal = ref(false);
+    const successWasAttending = ref(true);
 
     const closeAutoAlertUser = () => {
       setTimeout(() => {
@@ -277,15 +214,15 @@ export default {
     };
 
     const sendRSVP = () => {
-      if (!recaptcha.value || v$.value.$invalid) return;
+      if (v$.value.$invalid) return;
 
       // Generate wedding guests
       const weddingGuests: RSVPWeddingGuests = generateWeddingGuests();
 
       const rsvp: RSVP = {
-        id: weddingKey.value!,
+        id: window.crypto.randomUUID(),
         name: state.value.RSVPName,
-        familyList: familyListByScope.value,
+        familyList: null,
         email: state.value.RSVPEmail,
         isComing: state.value.RSVPIsComing,
         weddingChoices: weddingChoicesSorted.value,
@@ -296,16 +233,28 @@ export default {
       };
 
       loading.value = true;
-      RSVPFirestoreDataServices.createOrUpdate(rsvp)
+      RSVPSupabaseDataServices.createOrUpdate(rsvp)
         .then(() => {
           loading.value = false;
 
-          alertUser.value = {
-            type: "alert-success",
-            icon: "fa-circle-check",
-            message: "Envoi de votre réponse avec succès!",
+          alertUser.value = null;
+          successWasAttending.value = state.value.RSVPIsComing === "yes";
+          state.value = {
+            RSVPName: "",
+            RSVPEmail: "",
+            RSVPIsComing: "yes",
+            RSVPWeddingChoices: [WEDDING_EVENTS.CELEBRATION],
+            RSVPWeddingGuests: {
+              [WEDDING_EVENTS.KHMER_CEREMONY]: [],
+              [WEDDING_EVENTS.CHURCH_CEREMONY]: [],
+              [WEDDING_EVENTS.CELEBRATION]: [],
+              [WEDDING_EVENTS.BRUNCH]: [],
+            },
+            RSVPMealPreferences: [],
+            RSVPMessage: "",
           };
-          closeAutoAlertUser();
+          v$.value.$reset();
+          showSuccessModal.value = true;
         })
         .catch(() => {
           loading.value = false;
@@ -313,51 +262,10 @@ export default {
           alertUser.value = {
             type: "alert-danger",
             icon: "fa-circle-exclamation",
-            message: "Erreur lors de l'envoi de votre réponse...",
+            message: "There was an error submitting your RSVP...",
           };
           closeAutoAlertUser();
         });
-    };
-
-    const loadRSVP = async () => {
-      if (weddingKey.value) {
-        const rsvp = await RSVPFirestoreDataServices.getById(weddingKey.value!);
-
-        if (rsvp) {
-          copyState.value = {
-            [WEDDING_EVENTS.KHMER_CEREMONY]:
-              rsvp.weddingGuestsState[WEDDING_EVENTS.KHMER_CEREMONY] ?? true,
-            [WEDDING_EVENTS.CHURCH_CEREMONY]:
-              rsvp.weddingGuestsState[WEDDING_EVENTS.CHURCH_CEREMONY] ?? true,
-            [WEDDING_EVENTS.CELEBRATION]:
-              rsvp.weddingGuestsState[WEDDING_EVENTS.CELEBRATION] ?? true,
-            [WEDDING_EVENTS.BRUNCH]:
-              rsvp.weddingGuestsState[WEDDING_EVENTS.BRUNCH] ?? true,
-          };
-
-          state.value = {
-            RSVPName: rsvp.name,
-            RSVPEmail: rsvp.email ?? "",
-            RSVPIsComing: rsvp.isComing,
-            RSVPWeddingChoices: rsvp.weddingChoices,
-            RSVPWeddingGuests: {
-              [WEDDING_EVENTS.KHMER_CEREMONY]:
-                rsvp.weddingGuests[WEDDING_EVENTS.KHMER_CEREMONY] ?? [],
-              [WEDDING_EVENTS.CHURCH_CEREMONY]:
-                rsvp.weddingGuests[WEDDING_EVENTS.CHURCH_CEREMONY] ?? [],
-              [WEDDING_EVENTS.CELEBRATION]:
-                rsvp.weddingGuests[WEDDING_EVENTS.CELEBRATION] ?? [],
-              [WEDDING_EVENTS.BRUNCH]:
-                rsvp.weddingGuests[WEDDING_EVENTS.BRUNCH] ?? [],
-            },
-            RSVPMealPreferences:
-              rsvp.mealPreferences && rsvp.mealPreferences.length
-                ? rsvp.mealPreferences
-                : [],
-            RSVPMessage: rsvp.message ?? "",
-          };
-        }
-      }
     };
 
     const addNewGuest = (weddingEvent: WEDDING_EVENTS) => {
@@ -379,42 +287,23 @@ export default {
       );
     };
 
-    // Google Recaptcha V2
-    const recaptcha = ref(false);
-    const onRecaptchaSuccess = () => {
-      recaptcha.value = true;
-    };
-
-    const onRecaptchaFailure = () => {
-      recaptcha.value = false;
-    };
-
     return {
       v$,
       state,
       copyState,
-      weddingEvents,
       weddingIcon,
       weddingChoicesSorted,
       loading,
       alertUser,
+      showSuccessModal,
+      successWasAttending,
       sendRSVP,
       addNewGuest,
       removeGuest,
       isDisabledByCopyState,
-      isGuestsListAvailableError,
-      recaptcha,
-      onRecaptchaSuccess,
-      onRecaptchaFailure,
     };
   },
-  components: {
-    Recaptcha,
-  },
   data: () => ({
-    mealPreferences,
-    EMIT_RECAPTCHA_SUCCESS,
-    EMIT_RECAPTCHA_FAILURE,
     WEDDING_EVENTS,
     GUEST_TYPES,
     MAX_GUESTS_BY_EVENT,
@@ -435,28 +324,28 @@ export default {
       data-animation-direction="from-right"
       data-animation-delay="250"
     >
-      <h3 class="section-title">Serez-vous des nôtres?</h3>
+      <h3 class="section-title">Will you join us?</h3>
 
       <form id="form-rsvp" ref="form-rsvp" class="mx-2">
         <!-- RSVPName field -->
         <div v-show="v$.RSVPName.$error" class="invalid-field">
-          Veuillez renseigner le champ.
+          Please complete this field.
         </div>
         <div class="form-floating">
           <input
             type="text"
             name="Name"
             id="name"
-            placeholder="Nom de la famille ou du groupe"
+            placeholder="Name"
             class="form-control required fromName"
             v-model="state.RSVPName"
           />
-          <label for="name">Nom de la famille*</label>
+          <label for="name">Name*</label>
         </div>
 
         <!-- RSVPEmail field -->
         <div v-show="v$.RSVPEmail.$error" class="invalid-field">
-          Veuillez rentrez un e-mail valide.
+          Please enter a valid email address.
         </div>
         <div class="form-floating">
           <input
@@ -467,12 +356,12 @@ export default {
             class="form-control required fromEmail"
             v-model="state.RSVPEmail"
           />
-          <label for="email">E-mail (optionnel)</label>
+          <label for="email">Email (optional)</label>
         </div>
 
         <!-- RSVPIsComing field -->
         <div v-show="v$.RSVPIsComing.$error" class="invalid-field">
-          Veuillez rentrez un choix.
+          Please select an option.
         </div>
         <div class="form-check-wrapper">
           <div class="form-check form-check-inline">
@@ -484,7 +373,7 @@ export default {
               value="yes"
               v-model="state.RSVPIsComing"
             />
-            <label for="attend_wedding_yes">Oui, je serais là!</label>
+            <label for="attend_wedding_yes">Yes, I'll be there!</label>
           </div>
 
           <div class="form-check form-check-inline">
@@ -496,81 +385,9 @@ export default {
               value="no"
               v-model="state.RSVPIsComing"
             />
-            <label for="attend_wedding_no">Malheureusement non...</label>
+            <label for="attend_wedding_no">Unfortunately, I can't make it...</label>
           </div>
         </div>
-
-        <!-- RSVPWeddingChoices field -->
-        <div v-if="state.RSVPIsComing === 'yes'">
-          <label> Veuillez sélectionner le ou les évènement(s): </label>
-          <div v-show="v$.RSVPWeddingChoices.$error" class="invalid-field">
-            Veuillez rentrez votre choix.
-          </div>
-          <div
-            class="form-check-wrapper d-flex justify-content-center"
-            v-for="(weddingEvent, key) in weddingEvents"
-            :key="key"
-          >
-            <input
-              type="checkbox"
-              class="btn-check"
-              :id="'wedding-choice-' + key"
-              autocomplete="off"
-              :value="weddingEvent"
-              v-model="state.RSVPWeddingChoices"
-            />
-            <label
-              class="btn btn-outline-secondary btn-check-label d-flex justify-content-center"
-              :for="'wedding-choice-' + key"
-            >
-              <i :class="weddingIcon[weddingEvent]" class="me-1"></i>
-              {{ weddingEvent }}
-            </label>
-          </div>
-        </div>
-
-        <!-- RSVP Guest modal button -->
-        <div v-show="isGuestsListAvailableError" class="invalid-field">
-          Veuillez renseigner votre liste d'invités.
-        </div>
-        <div
-          v-if="state.RSVPWeddingChoices.length"
-          class="form-floating d-flex justify-content-center"
-        >
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#guestsModal"
-          >
-            Liste des invités (y compris vous)
-          </button>
-        </div>
-
-        <!-- RSVPMealPreferences field -->
-        <fieldset
-          class="form-check-wrapper required"
-          name="Meal Preferences"
-          id="meal_pref"
-          v-if="state.RSVPIsComing === 'yes'"
-        >
-          <label>Préférences alimentaires :</label>
-
-          <div
-            class="form-check"
-            v-for="(meal, index) in mealPreferences"
-            :key="index"
-          >
-            <input
-              class="form-check-input"
-              type="checkbox"
-              :value="meal"
-              :id="'meal_' + index"
-              v-model="state.RSVPMealPreferences"
-            />
-            {{ meal }}
-          </div>
-        </fieldset>
 
         <!-- RSVPMessage field -->
         <div class="form-floating">
@@ -585,19 +402,12 @@ export default {
           <label for="message">Message</label>
         </div>
 
-        <div class="form-check-wrapper d-flex justify-content-center">
-          <Recaptcha
-            @[EMIT_RECAPTCHA_SUCCESS]="onRecaptchaSuccess"
-            @[EMIT_RECAPTCHA_FAILURE]="onRecaptchaFailure"
-          />
-        </div>
-
         <div class="center">
           <!-- Button send form -->
           <button
             type="button"
             class="btn btn-primary"
-            :disabled="!recaptcha || v$.$invalid"
+            :disabled="loading || v$.$invalid"
             @click="sendRSVP"
           >
             <span
@@ -606,8 +416,8 @@ export default {
               role="status"
               aria-hidden="true"
             ></span>
-            <span v-if="!loading">Envoyer</span>
-            <span v-else class="ms-2">Envoi en cours...</span>
+            <span v-if="!loading">Submit</span>
+            <span v-else class="ms-2">Submitting...</span>
           </button>
 
           <br />
@@ -636,8 +446,59 @@ export default {
   </div>
   <!-- END RSVP FORM -->
 
+  <Transition name="rsvp-modal-fade">
+    <div
+      v-if="showSuccessModal"
+      class="rsvp-success-backdrop"
+      role="presentation"
+      @click.self="showSuccessModal = false"
+    >
+      <div
+        class="rsvp-success-modal neela-style"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="rsvp-success-title"
+      >
+        <span class="rsvp-success-line horizontal"></span>
+        <span class="rsvp-success-line vertical"></span>
+
+        <button
+          type="button"
+          class="rsvp-success-close"
+          aria-label="Close confirmation"
+          @click="showSuccessModal = false"
+        >
+          &times;
+        </button>
+
+        <div class="rsvp-success-icon">
+          <i class="icon-diamond-ring"></i>
+        </div>
+        <p class="rsvp-success-kicker">Chris & Micah</p>
+        <h2 id="rsvp-success-title">Thank You!</h2>
+        <div class="rsvp-success-ornament">❦</div>
+        <p v-if="successWasAttending">
+          Your RSVP has been received. We cannot wait to celebrate our special
+          day with you.
+        </p>
+        <p v-else>
+          Your RSVP has been received. You will be dearly missed on our special
+          day.
+        </p>
+        <button
+          type="button"
+          class="btn btn-primary rsvp-success-button"
+          @click="showSuccessModal = false"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </Transition>
+
   <!-- MODAL GUESTS -->
   <div
+    v-if="false"
     class="modal fade rsvp-modal mt-4"
     data-bs-backdrop="static"
     id="guestsModal"
@@ -649,7 +510,7 @@ export default {
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalToggleLabel">
-            Liste des invités (y compris vous)
+            Guest list (including yourself)
           </h5>
           <button
             type="button"
@@ -691,8 +552,7 @@ export default {
                     <div class="tooltip-custom">
                       <i class="fa-solid fa-circle-question"> </i>
                       <span class="tooltip-custom-text"
-                        >Dupliquer la liste des invités renseignée pour
-                        l'évènement
+                        >Copy the guest list entered for
                         <b>{{ weddingChoicesSorted[0] }}</b>
                       </span>
                     </div>
@@ -722,7 +582,7 @@ export default {
                       "
                       class="invalid-field"
                     >
-                      Veuillez rentrez un nom.
+                      Please enter a last name.
                     </div>
                     <div
                       v-show="
@@ -731,7 +591,7 @@ export default {
                       "
                       class="invalid-field"
                     >
-                      Veuillez rentrez un prénom.
+                      Please enter a first name.
                     </div>
                     <div
                       v-show="
@@ -740,7 +600,7 @@ export default {
                       "
                       class="invalid-field"
                     >
-                      Veuillez rentrez une tranche d'âge.
+                      Please select an age group.
                     </div>
 
                     <!-- RSVPGuest Name field -->
@@ -749,12 +609,12 @@ export default {
                         type="text"
                         name="Name"
                         id="name"
-                        placeholder="Nom"
+                        placeholder="Last name"
                         class="form-control required"
                         v-model="guest.name"
                         :disabled="isDisabledByCopyState(weddingEvent)"
                       />
-                      <label class="ms-2" for="name">Nom*</label>
+                      <label class="ms-2" for="name">Last name*</label>
                     </div>
 
                     <!-- RSVPGuest FirstName field -->
@@ -763,12 +623,12 @@ export default {
                         type="text"
                         name="FirstName"
                         id="name"
-                        placeholder="Prénom"
+                        placeholder="First name"
                         class="form-control required"
                         v-model="guest.firstName"
                         :disabled="isDisabledByCopyState(weddingEvent)"
                       />
-                      <label class="ms-2" for="name">Prénom*</label>
+                      <label class="ms-2" for="name">First name*</label>
                     </div>
 
                     <!-- RSVPGuest Age field -->
@@ -790,7 +650,7 @@ export default {
                         </option>
                       </select>
 
-                      <label class="ms-2" for="age_guest">Tranche d'âge</label>
+                      <label class="ms-2" for="age_guest">Age group</label>
                     </div>
 
                     <!-- RSVPGuest remove button -->
@@ -816,7 +676,7 @@ export default {
                       :disabled="isDisabledByCopyState(weddingEvent)"
                       @click="addNewGuest(weddingEvent)"
                     >
-                      <span class="ms-2">Ajouter un invité</span>
+                      <span class="ms-2">Add a guest</span>
                       <i class="fa-solid fa-circle-plus ms-2"></i>
                     </button>
                   </div>
@@ -835,7 +695,7 @@ export default {
               class="btn btn-primary"
               style="width: 200px"
             >
-              Valider
+              Confirm
             </button>
           </div>
         </div>
@@ -845,4 +705,134 @@ export default {
   <!-- END MODAL GUESTS -->
 </template>
 
-<style scoped></style>
+<style scoped>
+.rsvp-success-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(54, 42, 47, 0.58);
+  backdrop-filter: blur(5px);
+}
+
+.rsvp-success-modal {
+  position: relative;
+  width: min(520px, 100%);
+  padding: 58px 54px 52px;
+  overflow: hidden;
+  color: #6d6065;
+  text-align: center;
+  background: #fffaf9;
+  border: 1px solid #d990aa;
+  box-shadow: 0 24px 70px rgba(72, 48, 57, 0.28);
+}
+
+.rsvp-success-modal::before {
+  position: absolute;
+  inset: 10px;
+  pointer-events: none;
+  content: "";
+  border: 1px solid rgba(217, 144, 170, 0.55);
+}
+
+.rsvp-success-line {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, #d990aa, transparent);
+}
+
+.rsvp-success-line.horizontal {
+  right: 15%;
+  bottom: 30px;
+  left: 15%;
+  height: 1px;
+}
+
+.rsvp-success-close {
+  position: absolute;
+  top: 17px;
+  right: 22px;
+  z-index: 2;
+  padding: 0;
+  color: #b9778f;
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 1;
+  background: transparent;
+  border: 0;
+}
+
+.rsvp-success-icon {
+  margin-bottom: 12px;
+  color: #d990aa;
+  font-size: 46px;
+}
+
+.rsvp-success-kicker {
+  margin-bottom: 8px;
+  color: #b9778f;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.rsvp-success-modal h2 {
+  margin-bottom: 6px;
+  color: #c77896;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.4rem, 7vw, 3.6rem);
+  font-weight: 400;
+}
+
+.rsvp-success-ornament {
+  margin: 4px 0 20px;
+  color: #d990aa;
+  font-size: 24px;
+}
+
+.rsvp-success-modal p:not(.rsvp-success-kicker) {
+  max-width: 370px;
+  margin: 0 auto 28px;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.rsvp-success-button {
+  position: relative;
+  z-index: 2;
+  min-width: 180px;
+}
+
+.rsvp-modal-fade-enter-active,
+.rsvp-modal-fade-leave-active {
+  transition: opacity 0.25s ease;
+}
+
+.rsvp-modal-fade-enter-active .rsvp-success-modal,
+.rsvp-modal-fade-leave-active .rsvp-success-modal {
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.rsvp-modal-fade-enter-from,
+.rsvp-modal-fade-leave-to,
+.rsvp-modal-fade-enter-from .rsvp-success-modal,
+.rsvp-modal-fade-leave-to .rsvp-success-modal {
+  opacity: 0;
+}
+
+.rsvp-modal-fade-enter-from .rsvp-success-modal,
+.rsvp-modal-fade-leave-to .rsvp-success-modal {
+  transform: translateY(16px) scale(0.97);
+}
+
+@media (max-width: 575px) {
+  .rsvp-success-modal {
+    padding: 48px 28px 42px;
+  }
+}
+</style>

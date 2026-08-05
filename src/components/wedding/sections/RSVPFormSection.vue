@@ -1,13 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import { getQueryParam, KEY_QUERY_PARAM } from "../forms/helpers";
-
 import RSVPFormComponent from "../forms/RSVPFormComponent.vue";
-
-const weddingKey = computed(() => {
-  const key = getQueryParam(KEY_QUERY_PARAM);
-  return key ?? null;
-});
 </script>
 
 <template>
@@ -24,29 +16,27 @@ const weddingKey = computed(() => {
             data-animation-delay="250"
           ></i>
           <div data-animation-direction="from-top" data-animation-delay="250">
-            <h2 class="title">Ils vont se marier !</h2>
+            <h2 class="title">They're getting married!</h2>
             <p>
-              Ils se sont dit oui! Mélaine et Michel se marient les DD et DD MM
-              YYYY et vous invitent à partager ce merveilleux moment à leurs
-              côtés.
+              They said yes! Chris and Micah are getting married on October 13,
+              2026, and invite you to share this wonderful moment with them.
             </p>
             <p>
-              La cérémonie de mariage se déroulera sur plusieurs jours. Vous
-              trouverez le carton d'invitation à remplir. N'hésitez pas à nous
-              contacter si vous avez la moindre question ou autre.
+              The wedding celebrations will take place over several days.
+              Please complete the invitation form. Feel free to contact us if
+              you have any questions.
             </p>
 
-            <a :href="'/?key=' + weddingKey" class="btn btn-primary">
-              Découvrir notre histoire
+            <a href="/" class="btn btn-primary">
+              Discover our story
             </a>
 
             <blockquote class="neela-quote small extra-margin">
-              Merci de confirmer votre présence<br />avant le DD MM YYYY
+              Please RSVP<br />by September 13, 2026
             </blockquote>
 
             <strong>
-              Voici une petite vidéo explicative pour vous aider à confirmer
-              votre présence à notre Mariage:
+              Here is a short video explaining how to RSVP to our wedding:
               <br />
 
               <a href="#">
@@ -59,9 +49,8 @@ const weddingKey = computed(() => {
 
             <strong>
               <i class="fa-sharp fa-solid fa-circle-info me-1"></i>
-              Si vous avez la moindre question ou problème dans le remplissage
-              du Faire part de Mariage. N'hésitez pas à nous contacter afin que
-              nous puissions vous aider à le remplir.
+              If you have any questions or trouble completing the wedding
+              invitation, please contact us and we will be happy to help.
             </strong>
 
             <br />

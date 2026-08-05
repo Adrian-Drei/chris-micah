@@ -1,12 +1,4 @@
-<script setup lang="ts">
-import { computed } from "vue";
-import { getQueryParam, KEY_QUERY_PARAM } from "../forms/helpers";
-
-const weddingKey = computed(() => {
-  const key = getQueryParam(KEY_QUERY_PARAM);
-  return key ?? null;
-});
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <!-- BEGIN RSVP HEADER -->
@@ -15,7 +7,7 @@ const weddingKey = computed(() => {
       <div class="container">
         <div class="row">
           <div class="col-sm-12">
-            <a :href="'/?key=' + weddingKey" class="nav-logo">
+            <a href="/" class="nav-logo">
               <img
                 src="/src/assets/images/wedding_mm/logo_mm.png"
                 alt="Neela"
@@ -26,28 +18,28 @@ const weddingKey = computed(() => {
             <nav class="navbar">
               <ul class="nav navbar-nav">
                 <li>
-                  <a :href="'/?key=' + weddingKey">Découvrir notre histoire</a>
+                  <a href="/">Discover our story</a>
                 </li>
 
-                <li><a href="#rsvp">Faire part de Mariage</a></li>
+                <li><a href="#rsvp">Wedding Invitation</a></li>
 
                 <li class="dropdown">
                   <a
                     href="#the-wedding"
                     data-toggle="dropdown"
                     data-hover="dropdown"
-                    >Le Mariage<b class="caret"></b
+                    >The Wedding<b class="caret"></b
                   ></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#location">Localisation & déroulement</a></li>
+                    <li><a href="#location">Location & Schedule</a></li>
                     <li>
                       <a href="#bmiadsgmen"
-                        >Demoiselles d'honneur & garçons d'honneur</a
+                        >Bridesmaids & Groomsmen</a
                       >
                     </li>
-                    <li><a href="#giftregistry">Projet après Mariage</a></li>
-                    <li><a href="#countdown">Décompte</a></li>
-                    <li><a href="#testimonials">Citations</a></li>
+                    <li><a href="#giftregistry">Our Post-Wedding Plans</a></li>
+                    <li><a href="#countdown">Countdown</a></li>
+                    <li><a href="#testimonials">Quotes</a></li>
                   </ul>
                 </li>
               </ul>

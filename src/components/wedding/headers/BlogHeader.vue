@@ -26,7 +26,7 @@ const weddingKey = computed(() => {
             <nav class="navbar">
               <ul class="nav navbar-nav">
                 <li>
-                  <a :href="'/?key=' + weddingKey">Retour à l'accueil</a>
+                  <a :href="'/?key=' + weddingKey">Back to home</a>
                 </li>
               </ul>
 

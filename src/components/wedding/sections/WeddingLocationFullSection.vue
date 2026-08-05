@@ -26,7 +26,7 @@ const weddingKey = computed(() => {
         width="100%"
         height="500"
         style="border: 0"
-        allowfullscreen=""
+        allowfullscreen
         loading="lazy"
         referrerpolicy="strict-origin-when-cross-origin"
       ></iframe>
