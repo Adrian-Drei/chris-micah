@@ -119,7 +119,7 @@ import { RouterLink } from "vue-router";
   margin: 28px auto 0;
   padding: 18px 72px 16px;
   color: #4f493b;
-  background: rgba(237, 232, 208, 0.76);
+  background: rgba(237, 232, 208, 0.1);
   border: 1px solid rgba(79, 73, 59, 0.18);
   font-family: "Playfair Display", serif;
   font-size: 0.96rem;
