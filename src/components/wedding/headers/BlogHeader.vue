@@ -30,7 +30,11 @@ const weddingKey = computed(() => {
                 </li>
               </ul>
 
-              <button id="nav-mobile-btn">
+              <button
+                id="nav-mobile-btn"
+                type="button"
+                aria-label="Open navigation menu"
+              >
                 <i class="fas fa-bars"></i>
               </button>
               <!-- Mobile menu button -->
