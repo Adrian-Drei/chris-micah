@@ -168,6 +168,14 @@ const paymentOptions = [
   background: rgb(255 255 255 / 58%);
   text-align: center;
   box-shadow: 0 18px 55px rgb(79 73 59 / 8%);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.55s ease, background-color 0.55s ease;
+}
+
+.payment-card:hover {
+  background: rgb(255 255 255 / 76%);
+  box-shadow: 0 25px 70px rgb(79 73 59 / 14%);
+  transform: translateY(-7px);
 }
 
 .payment-card::before {
@@ -219,6 +227,18 @@ const paymentOptions = [
   width: 100%;
   height: 100%;
   object-fit: contain;
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.payment-card:hover .payment-card__qr {
+  transform: scale(1.025);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .payment-card,
+  .payment-card__qr {
+    transition: none;
+  }
 }
 
 .payment-card > p {

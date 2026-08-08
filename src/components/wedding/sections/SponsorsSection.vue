@@ -2,10 +2,10 @@
 import BridesMaidsAndGroomsMenSection from "./BridesMaidsAndGroomsMenSection.vue";
 
 const primarySponsorsGentlemen = [
-  "Mr. Ariel Pineda",
+  "Engr. Ariel Pineda",
   "Mr. Romeo Briones",
-  "Ptr. Jun Gapilango",
-  "Mr. Boy Lacson",
+  "Ptr. Amador Gapilango Jr.",
+  "Mr. Luis Lacson",
   "Mr. Gerardo Olivera",
   "Mr. Cyrus Cajayon",
   "Mr. Luis Claro",
@@ -17,9 +17,9 @@ const primarySponsorsGentlemen = [
 const primarySponsorsLadies = [
   "Mrs. Taj Pineda",
   "Dr. Rose May Badua",
-  "Mrs. Gene Gapilango",
+  "Mrs. Guenevere Gapilango",
   "Mrs. Emma Lacson",
-  "Mrs. Liza Olivera",
+  "Mrs. Elizabeth Olivera",
   "Mrs. Jaydee Cajayon",
   "Mrs. Veronica Claro",
   "Mrs. Kclyn Arvesu",
@@ -96,7 +96,7 @@ const primarySponsorsLadies = [
           <div class="col-md-5 text-center honor-role honor-card">
             <div class="small-title">Maid of Honor</div>
 
-            <div class="person-name">Nikki Mae Glodo</div>
+            <div class="person-name">Nikki Mae Dolojol</div>
           </div>
         </div>
       </div>
@@ -125,7 +125,7 @@ const primarySponsorsLadies = [
                 To clothe us as one in love and unity.
               </div>
               <div class="person-name small">Aaron Joseph Adolfo</div>
-              <div class="person-name small">Nikki Mae Glodo</div>
+              <div class="person-name small">Nikki Mae Dolojol</div>
             </div>
           </div>
 

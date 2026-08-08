@@ -138,11 +138,13 @@ onMounted(async () => {
 #location::before {
   left: -7%;
   transform: rotate(38deg);
+  animation: location-leaf-left 15s ease-in-out infinite alternate;
 }
 
 #location::after {
   right: -7%;
   transform: scaleX(-1) rotate(38deg);
+  animation: location-leaf-right 18s ease-in-out infinite alternate;
 }
 
 .location-eyebrow,
@@ -190,6 +192,11 @@ onMounted(async () => {
   border-top: 1px solid rgba(79, 73, 59, 0.2);
   border-bottom: 1px solid rgba(79, 73, 59, 0.2);
   box-shadow: 0 18px 50px rgba(79, 73, 59, 0.13);
+  transition: box-shadow 0.65s ease;
+}
+
+.map-wrapper:hover {
+  box-shadow: 0 24px 65px rgba(79, 73, 59, 0.2);
 }
 
 .google-map {
@@ -225,6 +232,27 @@ onMounted(async () => {
   border-bottom: 1px solid rgba(79, 73, 59, 0.18);
 }
 
+.pins a {
+  transition: color 0.3s ease;
+}
+
+.pins a:hover,
+.pins a:focus-visible {
+  color: #817655;
+}
+
+@keyframes location-leaf-left {
+  to {
+    transform: translate3d(16px, 12px, 0) rotate(41deg);
+  }
+}
+
+@keyframes location-leaf-right {
+  to {
+    transform: translate3d(-18px, 9px, 0) scaleX(-1) rotate(35deg);
+  }
+}
+
 @media (max-width: 768px) {
   #location {
     padding-top: 65px;
@@ -242,6 +270,18 @@ onMounted(async () => {
 
   .google-map {
     height: 350px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #location::before,
+  #location::after {
+    animation: none;
+  }
+
+  .map-wrapper,
+  .pins a {
+    transition: none;
   }
 }
 </style>

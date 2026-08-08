@@ -3,11 +3,11 @@ const WEDDING_PARTY_PAIRS = [
   { groomsman: "Fernando Badua III", bridesmaid: "Nicole Madriaga" },
   { groomsman: "Francis Joco Tolentino", bridesmaid: "Bea Cabudol" },
   { groomsman: "Laurence Ferrer", bridesmaid: "Malyn Timbol" },
-  { groomsman: "John Victor Rodriguez", bridesmaid: "Vanessa Rivera" },
+  { groomsman: "John Victor Rodriguez", bridesmaid: "Alexandra Abletes" },
   { groomsman: "Gerald Jusi", bridesmaid: "Edylin Capoquian" },
   { groomsman: "Hamlet Badua", bridesmaid: "Apple Esguerra" },
   { groomsman: "Aaron Justin Pineda", bridesmaid: "Nichole Aquino" },
-  { groomsman: "Mark Joseph Matibag", bridesmaid: "Alexandra Abletes" },
+  { groomsman: "Mark Joseph Matibag", bridesmaid: "Vanessa Rivera" },
   { groomsman: "John Rupert Severino", bridesmaid: "Samantha Garrovillo" },
 ];
 </script>

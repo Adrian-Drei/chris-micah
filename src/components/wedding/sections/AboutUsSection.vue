@@ -93,12 +93,14 @@ import couplePhoto from "@/assets/images/wedding_mm/gallery/gallery-13.webp";
   top: 130px;
   left: -10%;
   transform: rotate(22deg);
+  animation: botanical-drift-left 14s ease-in-out infinite alternate;
 }
 
 #about-us::after {
   right: -9%;
   bottom: -20%;
   transform: rotate(205deg);
+  animation: botanical-drift-right 17s ease-in-out infinite alternate;
 }
 
 .couple-photo {
@@ -108,6 +110,8 @@ import couplePhoto from "@/assets/images/wedding_mm/gallery/gallery-13.webp";
   background: rgba(251, 250, 243, 0.94);
   border: 1px solid rgba(79, 73, 59, 0.38);
   box-shadow: 0 28px 75px rgba(79, 73, 59, 0.2);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.7s ease;
 }
 
 .couple-photo::before {
@@ -123,6 +127,16 @@ import couplePhoto from "@/assets/images/wedding_mm/gallery/gallery-13.webp";
   width: 100%;
   aspect-ratio: 5 / 3;
   object-fit: cover;
+  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.couple-photo:hover {
+  box-shadow: 0 34px 90px rgba(79, 73, 59, 0.25);
+  transform: translateY(-6px);
+}
+
+.couple-photo:hover img {
+  transform: scale(1.012);
 }
 
 .couple-photo figcaption {
@@ -177,6 +191,26 @@ import couplePhoto from "@/assets/images/wedding_mm/gallery/gallery-13.webp";
 
 .about-ornament i {
   font-style: normal;
+  animation: ornament-breathe 3.8s ease-in-out infinite;
+}
+
+@keyframes botanical-drift-left {
+  to {
+    transform: translate3d(18px, 10px, 0) rotate(25deg);
+  }
+}
+
+@keyframes botanical-drift-right {
+  to {
+    transform: translate3d(-16px, -12px, 0) rotate(201deg);
+  }
+}
+
+@keyframes ornament-breathe {
+  50% {
+    opacity: 0.45;
+    transform: scale(0.86) rotate(45deg);
+  }
 }
 
 @media (max-width: 575px) {
@@ -200,6 +234,19 @@ import couplePhoto from "@/assets/images/wedding_mm/gallery/gallery-13.webp";
   .couple-photo figcaption {
     font-size: 0.6rem;
     letter-spacing: 0.1em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #about-us::before,
+  #about-us::after,
+  .about-ornament i {
+    animation: none;
+  }
+
+  .couple-photo,
+  .couple-photo img {
+    transition: none;
   }
 }
 </style>
