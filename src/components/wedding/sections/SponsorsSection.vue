@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import BridesMaidsAndGroomsMenSection from "./BridesMaidsAndGroomsMenSection.vue";
+
 const primarySponsorsGentlemen = [
   "Mr. Ariel Pineda",
   "Mr. Romeo Briones",
@@ -32,7 +34,10 @@ const primarySponsorsLadies = [
       <!-- Heading -->
       <div class="row">
         <div class="col-lg-8 offset-lg-2 text-center">
+          <p class="party-eyebrow">Chris & Micah</p>
           <h2 class="section-title">Wedding Party</h2>
+
+          <div class="title-ornament" aria-hidden="true"><span>❦</span></div>
 
           <p class="section-intro">
             Together with our beloved family and cherished friends, we are
@@ -43,7 +48,7 @@ const primarySponsorsLadies = [
       </div>
 
       <!-- Primary Sponsors -->
-      <div class="party-section">
+      <div class="party-section invitation-panel primary-panel">
         <div class="text-center">
           <h3 class="party-title">Primary Sponsors</h3>
 
@@ -80,15 +85,15 @@ const primarySponsorsLadies = [
       </div>
 
       <!-- Best Man / Maid of Honor -->
-      <div class="party-section">
+      <div class="party-section honor-section">
         <div class="row justify-content-center">
-          <div class="col-md-5 text-center honor-role">
+          <div class="col-md-5 text-center honor-role honor-card">
             <div class="small-title">Best Man</div>
 
             <div class="person-name">Aaron Joseph Adolfo</div>
           </div>
 
-          <div class="col-md-5 text-center honor-role">
+          <div class="col-md-5 text-center honor-role honor-card">
             <div class="small-title">Maid of Honor</div>
 
             <div class="person-name">Nikki Mae Glodo</div>
@@ -99,8 +104,49 @@ const primarySponsorsLadies = [
       <div class="divider-floral">
         <span>❦</span>
       </div>
+      <!-- Bridesmaids / Groomsmen -->
+      <BridesMaidsAndGroomsMenSection />
+
+      <div class="divider-floral"><span>❦</span></div>
+
+      <!-- Secondary Sponsors -->
+      <div class="party-section secondary-section">
+        <div class="text-center">
+          <h3 class="party-title">Secondary Sponsors</h3>
+          <p class="party-subtitle">Symbols of unity, love, and commitment.</p>
+        </div>
+
+        <div class="row justify-content-center g-5">
+          <div class="col-md-5">
+            <div class="secondary-card">
+              <div class="role-icon"><i class="fas fa-ribbon"></i></div>
+              <div class="small-title">Veil Sponsors</div>
+              <div class="role-description">
+                To clothe us as one in love and unity.
+              </div>
+              <div class="person-name small">Aaron Joseph Adolfo</div>
+              <div class="person-name small">Nikki Mae Glodo</div>
+            </div>
+          </div>
+
+          <div class="col-md-5">
+            <div class="secondary-card">
+              <div class="role-icon"><i class="fas fa-link"></i></div>
+              <div class="small-title">Cord Sponsors</div>
+              <div class="role-description">
+                To bind us together in lifelong commitment.
+              </div>
+              <div class="person-name small">Fernando Badua III</div>
+              <div class="person-name small">Nicole Madriaga</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider-floral"><span>❦</span></div>
+
       <!-- Wedding Roles -->
-      <div class="party-section">
+      <div class="party-section roles-section">
         <div class="text-center">
           <h3 class="party-title">Wedding Roles</h3>
 
@@ -182,7 +228,8 @@ const primarySponsorsLadies = [
       </div>
 
       <!-- Bride Highlight -->
-      <div class="party-section bride-section">
+      <div class="party-section bride-section invitation-panel">
+        <i class="icon-diamond-ring bride-icon" aria-hidden="true"></i>
         <div class="small-title bride-title">Here Comes the Bride</div>
 
         <div class="person-name small">Chescah Reinne Badua</div>
@@ -190,53 +237,6 @@ const primarySponsorsLadies = [
 
       <div class="divider-floral">
         <span>❦</span>
-      </div>
-
-      <!-- Secondary Sponsors -->
-      <div class="party-section">
-        <div class="text-center">
-          <h3 class="party-title">Secondary Sponsors</h3>
-
-          <p class="party-subtitle">Symbols of unity, love, and commitment.</p>
-        </div>
-
-        <div class="row justify-content-center g-5">
-          <div class="col-md-5">
-            <div class="secondary-card">
-              <div class="role-icon">
-                <i class="fas fa-ribbon"></i>
-              </div>
-
-              <div class="small-title">Veil Sponsors</div>
-
-              <div class="role-description">
-                To clothe us as one in love and unity.
-              </div>
-
-              <div class="person-name small">Aaron Joseph Adolfo</div>
-
-              <div class="person-name small">Nikki Mae Glodo</div>
-            </div>
-          </div>
-
-          <div class="col-md-5">
-            <div class="secondary-card">
-              <div class="role-icon">
-                <i class="fas fa-link"></i>
-              </div>
-
-              <div class="small-title">Cord Sponsors</div>
-
-              <div class="role-description">
-                To bind us together in lifelong commitment.
-              </div>
-
-              <div class="person-name small">Fernando Badua III</div>
-
-              <div class="person-name small">Nicole Madriaga</div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -266,6 +266,28 @@ const primarySponsorsLadies = [
 
 .party-section {
   margin: 20px 0;
+}
+
+/* Keep the paired attendants inside the same invitation flow. */
+:deep(#bmiadsgmen) {
+  margin: 68px 0;
+  padding: 0;
+  color: #4f493b;
+  background: transparent !important;
+}
+
+:deep(#bmiadsgmen::before) {
+  display: none;
+}
+
+:deep(#bmiadsgmen > .container) {
+  width: 100%;
+  max-width: none;
+  padding: 0;
+}
+
+:deep(#bmiadsgmen .section-title) {
+  color: #4f493b;
 }
 
 /* ---------------------------------------
@@ -509,6 +531,347 @@ const primarySponsorsLadies = [
 
   .divider-floral {
     width: 160px;
+  }
+}
+
+/* Refined invitation design */
+#wedding-party {
+  padding: 110px 0;
+  color: #4f493b;
+  background-color: #fbfaf3;
+  background-image: url("/src/assets/images/neela-pattern.png");
+  background-repeat: repeat;
+  background-position: top left;
+  background-size: auto;
+}
+
+#wedding-party::before,
+#wedding-party::after {
+  display: none;
+}
+
+#wedding-party::before {
+  top: 40px;
+  left: -180px;
+  transform: rotate(28deg);
+}
+
+#wedding-party::after {
+  right: -190px;
+  bottom: 20px;
+  transform: rotate(205deg);
+}
+
+#wedding-party > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.party-eyebrow {
+  margin: 0 0 12px;
+  color: #817655;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.title-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 18px auto 20px;
+  color: #9a8e68;
+}
+
+.title-ornament::before,
+.title-ornament::after {
+  width: 72px;
+  height: 1px;
+  content: "";
+  background: rgba(79, 73, 59, 0.38);
+}
+
+.section-intro {
+  max-width: 690px;
+  margin-top: 0;
+  color: #706958;
+  font-family: "Playfair Display", serif;
+  font-size: 1.08rem;
+  font-style: normal;
+  line-height: 1.8;
+}
+
+.party-section {
+  margin: 68px 0;
+}
+
+.invitation-panel {
+  position: relative;
+  padding: 62px 70px;
+  background: rgba(251, 250, 243, 0.94);
+  border: 1px solid rgba(79, 73, 59, 0.34);
+  box-shadow: 0 24px 70px rgba(79, 73, 59, 0.1);
+}
+
+.invitation-panel::before {
+  position: absolute;
+  inset: 9px;
+  pointer-events: none;
+  content: "";
+  border: 1px solid rgba(79, 73, 59, 0.18);
+}
+
+.party-title {
+  margin-bottom: 10px;
+  color: #4f493b;
+  font-family: "Playfair Display", serif;
+  font-size: 1.55rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: none;
+}
+
+.party-subtitle {
+  margin-bottom: 42px;
+  color: #817b6d;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+}
+
+.sponsor-row {
+  position: relative;
+}
+
+.sponsor-row::after {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 50%;
+  width: 1px;
+  content: "";
+  background: rgba(79, 73, 59, 0.18);
+}
+
+.sponsor-list li {
+  padding: 8px 0;
+  color: #4f493b;
+  font-family: "Playfair Display", serif;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.divider-floral {
+  width: 190px;
+  margin: 36px auto;
+}
+
+.divider-floral::before {
+  border-color: rgba(79, 73, 59, 0.22);
+}
+
+.divider-floral span {
+  padding: 0 18px;
+  color: #9a8e68;
+  background: #fbfaf3;
+}
+
+.honor-section .row {
+  gap: 24px;
+}
+
+.honor-card,
+.role-card,
+.secondary-card {
+  position: relative;
+  color: #4f493b;
+  background: rgba(251, 250, 243, 0.88);
+  border: 1px solid rgba(79, 73, 59, 0.26);
+  box-shadow: 0 14px 42px rgba(79, 73, 59, 0.08);
+}
+
+.honor-card {
+  padding: 42px 28px;
+}
+
+.honor-card::before,
+.role-card::before,
+.secondary-card::before {
+  position: absolute;
+  inset: 7px;
+  pointer-events: none;
+  content: "";
+  border: 1px solid rgba(79, 73, 59, 0.12);
+}
+
+.small-title {
+  position: relative;
+  margin-bottom: 12px;
+  color: #817655;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+}
+
+.person-name,
+.person-name.small {
+  position: relative;
+  color: #4f493b;
+  font-family: "Playfair Display", serif;
+  font-size: 1.55rem;
+  font-weight: 400;
+}
+
+.roles-section .row,
+.secondary-section .row {
+  align-items: stretch;
+}
+
+.roles-section [class*="col-"],
+.secondary-section [class*="col-"] {
+  display: flex;
+}
+
+.role-card,
+.secondary-card {
+  width: 100%;
+  padding: 38px 22px 34px;
+  text-align: center;
+  transition: border-color 0.25s ease, transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.role-card:hover,
+.secondary-card:hover {
+  border-color: rgba(79, 73, 59, 0.52);
+  box-shadow: 0 20px 50px rgba(79, 73, 59, 0.13);
+  transform: translateY(-4px);
+}
+
+.role-icon {
+  position: relative;
+  width: 62px;
+  height: 62px;
+  margin-bottom: 22px;
+  color: #817655;
+  background: #ede8d0;
+  border-color: rgba(79, 73, 59, 0.3);
+}
+
+.role-icon i {
+  color: #756a4b;
+  font-size: 20px;
+}
+
+.role-description {
+  position: relative;
+  min-height: 52px;
+  margin: 14px auto 20px;
+  color: #756e5d;
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+.bride-section {
+  max-width: 720px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 54px 30px;
+}
+
+.bride-icon {
+  position: relative;
+  display: block;
+  margin-bottom: 18px;
+  color: #9a8e68;
+  font-size: 38px;
+}
+
+.bride-section .person-name.small {
+  font-size: 2rem;
+}
+
+.secondary-card .person-name.small + .person-name.small {
+  margin-top: 5px;
+}
+
+@media (max-width: 991px) {
+  #wedding-party {
+    padding: 85px 0;
+  }
+
+  .invitation-panel {
+    padding: 52px 42px;
+  }
+
+  .sponsor-row::after {
+    display: none;
+  }
+
+  .party-section {
+    margin: 54px 0;
+  }
+
+  .divider-floral {
+    margin: 34px auto;
+  }
+}
+
+@media (max-width: 767px) {
+  #wedding-party {
+    padding: 70px 0;
+  }
+
+  #wedding-party::before,
+  #wedding-party::after {
+    width: 300px;
+    height: 300px;
+  }
+
+  .section-intro {
+    padding: 0 8px;
+    font-size: 0.96rem;
+  }
+
+  .invitation-panel {
+    padding: 44px 22px;
+  }
+
+  .primary-panel .col-md-6 + .col-md-6 {
+    margin-top: 26px;
+    padding-top: 26px;
+    border-top: 1px solid rgba(79, 73, 59, 0.18);
+  }
+
+  .honor-section .row {
+    gap: 16px;
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .honor-card,
+  .role-card,
+  .secondary-card {
+    margin-bottom: 0;
+  }
+
+  .roles-section [class*="col-"],
+  .secondary-section [class*="col-"] {
+    margin-bottom: 16px;
+  }
+
+  .person-name,
+  .person-name.small {
+    font-size: 1.28rem;
+  }
+
+  .bride-section .person-name.small {
+    font-size: 1.65rem;
+  }
+
+  .party-subtitle {
+    margin-bottom: 30px;
   }
 }
 </style>

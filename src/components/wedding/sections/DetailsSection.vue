@@ -1,12 +1,5 @@
 <script setup lang="ts">
-const dressColors = [
-  "#F7D2BA",
-  "#DEC2AE",
-  "#B99B7B",
-  "#F4A8AA",
-  "#F6C8CD",
-  "#AFC8F2",
-];
+import guestAttireGuide from "@/assets/images/wedding_mm/guest-attire-guide.png";
 </script>
 
 <template>
@@ -23,7 +16,7 @@ const dressColors = [
       </div>
 
       <!-- Attire -->
-      <div class="detail-card">
+      <div class="detail-card attire-card">
         <h3 class="detail-title">Attire Guide</h3>
 
         <p class="detail-text">
@@ -32,14 +25,18 @@ const dressColors = [
           refrain from wearing white, as it is reserved for the bride.
         </p>
 
-        <div class="color-palette">
-          <span
-            v-for="(color, index) in dressColors"
-            :key="index"
-            class="color-circle"
-            :style="{ background: color }"
-          />
-        </div>
+        <figure class="attire-guide">
+          <div class="attire-guide__frame">
+            <img
+              :src="guestAttireGuide"
+              alt="Semi-formal wedding guest attire and color guide for female and male guests"
+              loading="lazy"
+            />
+          </div>
+          <figcaption>
+            Suggested styles and colors for our wedding guests
+          </figcaption>
+        </figure>
       </div>
 
       <div class="divider-floral">
@@ -97,6 +94,15 @@ const dressColors = [
   text-align: center;
 }
 
+.attire-card {
+  max-width: 1040px;
+}
+
+.attire-card .detail-text {
+  max-width: 760px;
+  margin-inline: auto;
+}
+
 .detail-title {
   text-transform: uppercase;
   letter-spacing: 6px;
@@ -110,20 +116,40 @@ const dressColors = [
   color: #444444;
 }
 
-.color-palette {
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-  flex-wrap: wrap;
-  margin-top: 35px;
+.attire-guide {
+  width: min(100%, 980px);
+  margin: 38px auto 0;
 }
 
-.color-circle {
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  border: 3px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+.attire-guide__frame {
+  position: relative;
+  padding: 10px;
+  border: 1px solid rgba(79, 73, 59, 0.55);
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow: 0 22px 60px rgba(79, 73, 59, 0.14);
+}
+
+.attire-guide__frame::after {
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  content: "";
+  pointer-events: none;
+}
+
+.attire-guide img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.attire-guide figcaption {
+  margin-top: 16px;
+  color: #4f493b;
+  font-family: "Playfair Display", serif;
+  font-size: 0.88rem;
+  font-style: italic;
+  letter-spacing: 0.04em;
 }
 
 .quote-card {
@@ -187,9 +213,16 @@ const dressColors = [
     font-size: 1.45rem;
   }
 
-  .color-circle {
-    width: 48px;
-    height: 48px;
+  .attire-guide {
+    margin-top: 28px;
+  }
+
+  .attire-guide__frame {
+    padding: 5px;
+  }
+
+  .attire-guide__frame::after {
+    inset: 10px;
   }
 }
 </style>

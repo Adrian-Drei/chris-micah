@@ -17,25 +17,24 @@
             <!-- BEGIN MAIN MENU -->
             <nav class="navbar">
               <ul class="nav navbar-nav">
-                <li><a href="#loveline">Our Love Story</a></li>
-
+                <li><a href="/rsvp">RSVP</a></li>
                 <li class="dropdown">
                   <a
-                    href="#the-wedding"
+                    href="#location"
                     data-toggle="dropdown"
                     data-hover="dropdown"
                   >
                     The Wedding <b class="caret"></b>
                   </a>
+
                   <ul class="dropdown-menu">
-                    <li><a href="#the-wedding">Invitation</a></li>
-                    <li><a href="#location">Location & Schedule</a></li>
+                    <li><a href="#wedding-party">Wedding Party</a></li>
                     <li>
                       <a href="#bmiadsgmen"> Bridesmaids & Groomsmen </a>
                     </li>
                     <li><a href="#giftregistry">Our Future Together</a></li>
+                    <li><a href="#location">Location & Schedule</a></li>
                     <li><a href="#countdown">Countdown</a></li>
-                    <li><a href="#testimonials">Quotes</a></li>
                   </ul>
                 </li>
               </ul>

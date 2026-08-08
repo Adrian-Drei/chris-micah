@@ -27,10 +27,8 @@ import RSVPFormComponent from "../forms/RSVPFormComponent.vue";
               any questions.
             </p>
 
-            <a href="/" class="btn btn-primary"> Discover our story </a>
-
             <blockquote class="neela-quote small extra-margin">
-              Please RSVP<br />before August 31, 2026
+              Please RSVP<br />by August 31, 2026
             </blockquote>
 
             <br />

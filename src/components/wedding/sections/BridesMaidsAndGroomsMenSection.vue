@@ -1,92 +1,18 @@
 <script setup lang="ts">
-import { getImageFormat } from "@/utils/helpers";
-
-enum Type {
-  BRIDESMAID = "Bridesmaid",
-  GROOMSMAN = "Groomsman",
-}
-
-const PLACEHOLDER = "https://placehold.co/600x600?text=Photo+Coming+Soon";
-
-const GROOMSMEN = [
-  {
-    name: "Fernando Badua III",
-    image: "",
-    type: Type.GROOMSMAN,
-  },
-  {
-    name: "Francis Joco Tolentino",
-    image: "",
-    type: Type.GROOMSMAN,
-  },
-  {
-    name: "Laurence Ferrer",
-    image: "",
-    type: Type.GROOMSMAN,
-  },
-  {
-    name: "John Victor Rodriguez",
-    image: "",
-    type: Type.GROOMSMAN,
-  },
-  {
-    name: "Gerald Jusi",
-    image: "",
-    type: Type.GROOMSMAN,
-  },
-  {
-    name: "Hamlet Badua",
-    image: "",
-    type: Type.GROOMSMAN,
-  },
-  {
-    name: "Aaron Justin Pineda",
-    image: "",
-    type: Type.GROOMSMAN,
-  },
-];
-
-const BRIDESMAIDS = [
-  {
-    name: "Nicole Madriaga",
-    image: "",
-    type: Type.BRIDESMAID,
-  },
-  {
-    name: "Bea Cabudol",
-    image: "",
-    type: Type.BRIDESMAID,
-  },
-  {
-    name: "Malyn Timbol",
-    image: "",
-    type: Type.BRIDESMAID,
-  },
-  {
-    name: "Samantha Garrovillo",
-    image: "",
-    type: Type.BRIDESMAID,
-  },
-  {
-    name: "Edylin Capoquian",
-    image: "",
-    type: Type.BRIDESMAID,
-  },
-  {
-    name: "Apple Esguerra",
-    image: "",
-    type: Type.BRIDESMAID,
-  },
-  {
-    name: "Nichole Aquino",
-    image: "",
-    type: Type.BRIDESMAID,
-  },
+const WEDDING_PARTY_PAIRS = [
+  { groomsman: "Fernando Badua III", bridesmaid: "Nicole Madriaga" },
+  { groomsman: "Francis Joco Tolentino", bridesmaid: "Bea Cabudol" },
+  { groomsman: "Laurence Ferrer", bridesmaid: "Malyn Timbol" },
+  { groomsman: "John Victor Rodriguez", bridesmaid: "Vanessa Rivera" },
+  { groomsman: "Gerald Jusi", bridesmaid: "Edylin Capoquian" },
+  { groomsman: "Hamlet Badua", bridesmaid: "Apple Esguerra" },
+  { groomsman: "Aaron Justin Pineda", bridesmaid: "Nichole Aquino" },
+  { groomsman: "Mark Joseph Matibag", bridesmaid: "Alexandra Abletes" },
+  { groomsman: "John Rupert Severino", bridesmaid: "Samantha Garrovillo" },
 ];
 </script>
 
 <template>
-  <!-- BEGIN BRIDESMAIDS & GROOMSMEN SECTION -->
   <section id="bmiadsgmen" class="parallax-background bg-color-overlay">
     <div class="container">
       <div class="row">
@@ -95,136 +21,120 @@ const BRIDESMAIDS = [
         </div>
       </div>
 
-      <!-- BRIDESMAIDS -->
-      <div class="row center">
+      <div
+        class="party-pairings neela-style"
+        data-animation-direction="from-bottom"
+        data-animation-delay="300"
+      >
+        <div class="pairing-headings" aria-hidden="true">
+          <span>Groomsmen</span>
+          <i class="icon-two-hearts"></i>
+          <span>Bridesmaids</span>
+        </div>
+
         <div
-          v-for="(value, index) in BRIDESMAIDS"
-          :key="index"
-          class="element bmaid-gmen col-sm-6 col-md-3 col-lg-3"
-          data-animation-direction="from-bottom"
-          data-animation-delay="300"
+          v-for="pair in WEDDING_PARTY_PAIRS"
+          :key="pair.groomsman"
+          class="party-pair"
         >
-          <div class="image">
-            <img
-              :src="value.image ? getImageFormat(value.image) : PLACEHOLDER"
-              :alt="value.name"
-            />
-            <div class="hover-info neela-style">
-              <div class="content center">
-                <h5>
-                  {{ value.name }}
-                  <small>{{ value.type }}</small>
-                </h5>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- GROOMSMEN -->
-      <div class="row center">
-        <div
-          v-for="(value, index) in GROOMSMEN"
-          :key="index"
-          class="element bmaid-gmen col-sm-6 col-md-3 col-lg-3"
-          data-animation-direction="from-bottom"
-          data-animation-delay="300"
-        >
-          <div class="image">
-            <img
-              :src="value.image ? getImageFormat(value.image) : PLACEHOLDER"
-              :alt="value.name"
-            />
-            <div class="hover-info neela-style">
-              <div class="content center">
-                <h5>
-                  {{ value.name }}
-                  <small>{{ value.type }}</small>
-                </h5>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- LIST VERSION -->
-    <div class="row mt-5 justify-content-center">
-      <div class="col-lg-5 col-md-6 mb-5">
-        <div class="party-card">
-          <h3 class="party-title">Groomsmen</h3>
-          <div class="divider"></div>
-
-          <ul class="party-list">
-            <li v-for="(value, index) in GROOMSMEN" :key="index">
-              {{ value.name }}
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="col-lg-5 col-md-6 mb-5">
-        <div class="party-card">
-          <h3 class="party-title">Bridesmaids</h3>
-          <div class="divider"></div>
-
-          <ul class="party-list">
-            <li v-for="(value, index) in BRIDESMAIDS" :key="index">
-              {{ value.name }}
-            </li>
-          </ul>
+          <span class="party-name groomsman">{{ pair.groomsman }}</span>
+          <span class="pair-ornament" aria-hidden="true">❦</span>
+          <span class="party-name bridesmaid">{{ pair.bridesmaid }}</span>
         </div>
       </div>
     </div>
   </section>
-  <!-- END BRIDESMAIDS & GROOMSMEN SECTION -->
 </template>
 
 <style scoped>
-.party-card {
-  text-align: center;
-  padding: 40px 30px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
+.party-pairings {
+  width: min(920px, 100%);
+  margin: 40px auto 0;
+  padding: 48px 64px;
+  color: #4f493b;
+  background: rgba(251, 250, 243, 0.88);
+  border: 1px solid rgba(79, 73, 59, 0.34);
+  box-shadow: 0 20px 60px rgba(79, 73, 59, 0.12);
 }
 
-.party-title {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 2rem;
-  text-transform: uppercase;
-  letter-spacing: 5px;
-  margin-bottom: 12px;
+.pairing-headings,
+.party-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 54px minmax(0, 1fr);
+  align-items: center;
+}
+
+.pairing-headings {
+  padding-bottom: 22px;
   color: #756a4b;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-align: center;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(79, 73, 59, 0.22);
 }
 
-.divider {
-  width: 70px;
-  height: 2px;
-  background: #ede8d0;
-  margin: 0 auto 30px;
+.pairing-headings i {
+  color: #9a8e68;
+  font-size: 25px;
 }
 
-.party-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.party-pair {
+  min-height: 64px;
+  border-bottom: 1px solid rgba(79, 73, 59, 0.14);
 }
 
-.party-list li {
-  font-size: 1.1rem;
-  letter-spacing: 1px;
-  padding: 10px 0;
-  position: relative;
+.party-pair:last-child {
+  border-bottom: 0;
 }
 
-.party-list li:not(:last-child)::after {
-  content: "";
-  display: block;
-  width: 35px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.15);
-  margin: 10px auto 0;
+.party-name {
+  font-family: "Playfair Display", serif;
+  font-size: 1.08rem;
+  letter-spacing: 0.02em;
+}
+
+.groomsman {
+  text-align: right;
+}
+
+.bridesmaid {
+  text-align: left;
+}
+
+.pair-ornament {
+  color: #a39870;
+  text-align: center;
+}
+
+@media (max-width: 575px) {
+  .party-pairings {
+    margin-top: 24px;
+    padding: 30px 18px;
+  }
+
+  .pairing-headings,
+  .party-pair {
+    grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr);
+  }
+
+  .pairing-headings {
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+  }
+
+  .pairing-headings i {
+    font-size: 19px;
+  }
+
+  .party-pair {
+    min-height: 58px;
+  }
+
+  .party-name {
+    font-size: 0.86rem;
+    line-height: 1.3;
+  }
 }
 </style>

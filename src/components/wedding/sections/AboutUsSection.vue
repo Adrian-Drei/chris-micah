@@ -1,72 +1,27 @@
 <script setup lang="ts">
-import { getImageFormat } from "@/utils/helpers";
+import couplePhoto from "@/assets/images/wedding_mm/gallery/gallery-13.webp";
 </script>
 
 <template>
   <!-- BEGIN ABOUT US SECTION -->
   <section id="about-us">
+    <div class="about-background" aria-hidden="true"></div>
     <div class="container">
-      <div class="row about-elems-wrapper">
+      <div class="row justify-content-center">
         <div
-          class="element col-md-6 col-xl-4 offset-xl-2"
-          data-animation-direction="from-left"
+          class="col-lg-9 col-xl-8"
+          data-animation-direction="from-bottom"
           data-animation-delay="300"
         >
-          <div class="image">
+          <figure class="couple-photo neela-style">
             <img
-              src="https://placehold.co/600x600?text=Placeholder"
-              alt="Michel"
+              :src="couplePhoto"
+              alt="Chris and Micah together during their engagement session"
             />
-            <div class="hover-info neela-style">
-              <div class="content">
-                <h3>Micah<small>The Bride</small></h3>
-                <p>
-                  I feel incredibly blessed and excited to spend every day for
-                  the rest of my life with him!
-                </p>
-                <ul class="sn-icons">
-                  <li>
-                    <a href="#"><i class="fab fa-instagram-square"></i></a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="divider-about-us"
-          data-animation-direction="fade"
-          data-animation-delay="500"
-        >
-          <i class="icon-two-hearts"></i>
-        </div>
-
-        <div
-          class="element col-md-6 col-xl-4"
-          data-animation-direction="from-right"
-          data-animation-delay="400"
-        >
-          <div class="image">
-            <img
-              src="https://placehold.co/600x600?text=Placeholder"
-              alt="Michel"
-            />
-            <div class="hover-info neela-style">
-              <div class="content">
-                <h3>Chris<small>The Groom</small></h3>
-                <p>
-                  She is everything I've ever dreamed of, and I can't wait to
-                  spend the rest of my life with her!
-                </p>
-                <ul class="sn-icons">
-                  <li>
-                    <a href="#"><i class="fab fa-instagram-square"></i></a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+            <figcaption>
+              Chris &amp; Micah <span>&bull;</span> Forever begins here
+            </figcaption>
+          </figure>
         </div>
       </div>
 
@@ -76,16 +31,11 @@ import { getImageFormat } from "@/utils/helpers";
           data-animation-direction="from-bottom"
           data-animation-delay="300"
         >
-          <h3>We're Getting Married for Life!</h3>
-          <p>
-            "Family isn't just about blood... Home is wherever you are... I
-            can't wait to continue spending every single day by your side." –
-            Micah
-          </p>
-          <p>
-            "Today and always, beyond tomorrow, I need you by my side forever,
-            as my best friend, my lover, and my soulmate." – Chris
-          </p>
+          <p class="about-eyebrow">Together, always</p>
+          <h3 class="mt-10">We're Getting Married for Life!</h3>
+          <div class="about-ornament" aria-hidden="true">
+            <span></span><i>&#9671;</i><span></span>
+          </div>
         </div>
       </div>
     </div>
@@ -93,4 +43,163 @@ import { getImageFormat } from "@/utils/helpers";
   <!-- END ABOUT US SECTION -->
 </template>
 
-<style scoped></style>
+<style scoped>
+#about-us {
+  position: relative;
+  margin-top: -130px;
+  padding: 30px 0 105px;
+  z-index: 1;
+  isolation: isolate;
+}
+
+.about-background {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  background: radial-gradient(
+      circle at 18% 35%,
+      rgba(218, 180, 169, 0.2),
+      transparent 27%
+    ),
+    radial-gradient(
+      circle at 84% 72%,
+      rgba(191, 181, 137, 0.2),
+      transparent 30%
+    ),
+    linear-gradient(135deg, #fbfaf3 0%, #f3eedc 50%, #fbfaf3 100%);
+  clip-path: polygon(0 130px, 100% 0, 100% 100%, 0 100%);
+  pointer-events: none;
+}
+
+#about-us > .container {
+  position: relative;
+  z-index: 2;
+}
+
+#about-us::before,
+#about-us::after {
+  position: absolute;
+  z-index: -1;
+  width: clamp(290px, 32vw, 620px);
+  aspect-ratio: 1;
+  background: url("/src/assets/images/flower-large.svg") center / contain
+    no-repeat;
+  content: "";
+  opacity: 0.11;
+  pointer-events: none;
+}
+
+#about-us::before {
+  top: 130px;
+  left: -10%;
+  transform: rotate(22deg);
+}
+
+#about-us::after {
+  right: -9%;
+  bottom: -20%;
+  transform: rotate(205deg);
+}
+
+.couple-photo {
+  position: relative;
+  margin: 0;
+  padding: 12px 12px 0;
+  background: rgba(251, 250, 243, 0.94);
+  border: 1px solid rgba(79, 73, 59, 0.38);
+  box-shadow: 0 28px 75px rgba(79, 73, 59, 0.2);
+}
+
+.couple-photo::before {
+  position: absolute;
+  inset: -12px;
+  border: 1px solid rgba(79, 73, 59, 0.16);
+  content: "";
+  pointer-events: none;
+}
+
+.couple-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 5 / 3;
+  object-fit: cover;
+}
+
+.couple-photo figcaption {
+  padding: 13px 8px 12px;
+  color: #68604f;
+  font-family: "Playfair Display", serif;
+  font-size: 0.72rem;
+  font-style: italic;
+  letter-spacing: 0.16em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.couple-photo figcaption span {
+  margin: 0 0.55rem;
+  color: #a99f7e;
+}
+
+.about-us-desc {
+  text-align: center;
+}
+
+.about-eyebrow {
+  margin: 3.5rem 0 -2.6rem;
+  color: #8b8062;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.about-us-desc h3 {
+  color: #4f493b;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 4vw, 3.35rem);
+  font-weight: 400;
+}
+
+.about-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  color: #8b8062;
+}
+
+.about-ornament span {
+  width: 3rem;
+  height: 1px;
+  background: rgba(79, 73, 59, 0.4);
+}
+
+.about-ornament i {
+  font-style: normal;
+}
+
+@media (max-width: 575px) {
+  #about-us {
+    margin-top: -60px;
+    padding: 20px 0 75px;
+  }
+
+  .about-background {
+    clip-path: polygon(0 60px, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .couple-photo {
+    padding: 7px 7px 0;
+  }
+
+  .couple-photo::before {
+    inset: -6px;
+  }
+
+  .couple-photo figcaption {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+  }
+}
+</style>

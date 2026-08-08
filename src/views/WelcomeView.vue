@@ -20,11 +20,9 @@ const openInvitation = async () => {
       <p class="welcome-eyebrow">You are invited</p>
       <h1 id="welcome-title">Chris <small>&</small> Micah</h1>
       <div class="welcome-ornament" aria-hidden="true"><span>❦</span></div>
-      <p class="welcome-message">
+      <p class="welcome-message mb-5">
         We would be honored to have you share in the joy of our wedding day.
       </p>
-      <p class="welcome-date">October 13, 2026 <span>•</span> Silang, Cavite</p>
-      <p class="welcome-hashtag">#MICAHyakapnasiCHRIS</p>
       <button type="button" class="welcome-cta" @click="openInvitation">
         <span>Open our invitation</span>
         <i class="fas fa-arrow-right" aria-hidden="true"></i>
@@ -127,27 +125,6 @@ const openInvitation = async () => {
   font-size: 1.3rem;
   line-height: 1.65;
 }
-.welcome-date {
-  margin: 20px 0 30px;
-  color: #6d6655;
-  font-size: 0.77rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-.welcome-date span {
-  margin: 0 6px;
-}
-
-.welcome-hashtag {
-  margin: -18px 0 28px;
-  color: #4f493b;
-  font-family: "Playfair Display", serif;
-  font-size: 0.92rem;
-  font-style: italic;
-  letter-spacing: 0.04em;
-}
-
 .welcome-cta {
   position: relative;
   z-index: 2;
@@ -215,9 +192,6 @@ const openInvitation = async () => {
   }
   .welcome-card h1 {
     font-size: 3rem;
-  }
-  .welcome-date {
-    line-height: 1.7;
   }
   .welcome-cta {
     width: calc(100% - 20px);
