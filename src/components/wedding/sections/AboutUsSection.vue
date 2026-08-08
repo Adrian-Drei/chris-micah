@@ -220,6 +220,7 @@ import couplePhoto from "@/assets/images/wedding_mm/gallery/gallery-13.webp";
   }
 
   .about-background {
+    background: #f3eedc;
     clip-path: polygon(0 60px, 100% 0, 100% 100%, 0 100%);
   }
 

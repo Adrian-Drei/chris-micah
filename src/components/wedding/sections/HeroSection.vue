@@ -85,6 +85,10 @@ import { RouterLink } from "vue-router";
 </template>
 
 <style scoped>
+#hero.section-divider-bg-color::after {
+  border-color: transparent transparent #f3eedc transparent;
+}
+
 .hero-kicker {
   color: #4f493b;
   font-family: "Playfair Display", serif;
@@ -179,6 +183,10 @@ import { RouterLink } from "vue-router";
 }
 
 @media (max-width: 575px) {
+  #hero.section-divider-bg-color::after {
+    border-color: transparent transparent #f3eedc transparent;
+  }
+
   .hero-kicker {
     font-size: 0.82rem;
   }
