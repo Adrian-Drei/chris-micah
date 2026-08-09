@@ -79,7 +79,7 @@ const mapsUrl =
             />
           </a>
 
-          <a
+          <!-- <a
             class="venue-feature__button"
             :href="mapsUrl"
             target="_blank"
@@ -87,7 +87,7 @@ const mapsUrl =
           >
             <i class="fas fa-location-arrow" aria-hidden="true"></i>
             Open in Google Maps
-          </a>
+          </a> -->
         </div>
       </div>
     </section>

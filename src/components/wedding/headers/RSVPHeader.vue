@@ -29,7 +29,7 @@
                   <ul class="dropdown-menu">
                     <li><a href="/#wedding-party">Wedding Party</a></li>
                     <li>
-                      <a href="/#bmiadsgmen">Bridesmaids & Groomsmen</a>
+                      <a href="/#bmiadsgmen">Groomsmen & Bridesmaids</a>
                     </li>
                     <li><a href="/#giftregistry">Our Post-Wedding Plans</a></li>
                     <li><a href="/#location">Location & Schedule</a></li>

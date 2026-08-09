@@ -16,7 +16,11 @@ const openInvitation = async () => {
     <div class="welcome-overlay"></div>
     <section class="welcome-card" aria-labelledby="welcome-title">
       <span class="welcome-frame"></span>
-      <i class="icon-diamond-ring welcome-icon" aria-hidden="true"></i>
+      <img
+        src="../assets/images/logo.png"
+        alt="logo"
+        class="welcome-icon size-10 mx-auto"
+      />
       <p class="welcome-eyebrow">You are invited</p>
       <h1 id="welcome-title">Chris <small>&</small> Micah</h1>
       <div class="welcome-ornament" aria-hidden="true"><span>❦</span></div>

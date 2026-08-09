@@ -15,11 +15,16 @@
           </div>
 
           <div class="col-md-4">
-            <div class="footer-logo">
+            <!-- <div class="footer-logo">
               Chris<br />
               <small>&</small><br />
               Micah
-            </div>
+            </div> -->
+            <img
+              src="../../../assets/images/logo.png"
+              alt="logo"
+              class="size-40"
+            />
           </div>
 
           <div class="col-md-4">
