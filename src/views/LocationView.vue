@@ -65,9 +65,8 @@ const mapsUrl =
             Google Maps, or use the directions button below.
           </p>
 
-          <a
+          <div
             class="venue-feature__qr"
-            :href="mapsUrl"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Open Chateaux De Paris in Google Maps"
@@ -77,7 +76,7 @@ const mapsUrl =
               :src="mapsQr"
               alt="Google Maps QR code for Chateaux De Paris"
             />
-          </a>
+        </div>
 
           <!-- <a
             class="venue-feature__button"
