@@ -7,7 +7,7 @@ import photo03 from "@/assets/images/wedding_mm/gallery/gallery-03.webp";
 import photo04 from "@/assets/images/wedding_mm/gallery/gallery-04.webp";
 import photo05 from "@/assets/images/wedding_mm/gallery/gallery-05.webp";
 import photo06 from "@/assets/images/wedding_mm/gallery/gallery-06.webp";
-import photo07 from "@/assets/images/wedding_mm/gallery/gallery-07.webp";
+import photo07 from "@/assets/images/wedding_mm/gallery/gallery-23.webp";
 import photo08 from "@/assets/images/wedding_mm/gallery/gallery-08.webp";
 import photo09 from "@/assets/images/wedding_mm/gallery/gallery-09.webp";
 import photo10 from "@/assets/images/wedding_mm/gallery/gallery-10.webp";
@@ -20,6 +20,10 @@ import photo17 from "@/assets/images/wedding_mm/gallery/gallery-17.webp";
 import photo18 from "@/assets/images/wedding_mm/gallery/gallery-18.webp";
 import photo19 from "@/assets/images/wedding_mm/gallery/gallery-19.webp";
 import photo20 from "@/assets/images/wedding_mm/gallery/gallery-20.webp";
+import photo21 from "@/assets/images/wedding_mm/gallery/gallery-21.webp";
+import photo22 from "@/assets/images/wedding_mm/gallery/gallery-22.webp";
+import photo24 from "@/assets/images/wedding_mm/gallery/gallery-24.webp";
+import photo25 from "@/assets/images/wedding_mm/gallery/gallery-25.webp";
 
 const photos = [
   { src: photo01, alt: "Chris and Micah engagement portrait 1", shape: "wide" },
@@ -103,6 +107,26 @@ const photos = [
   {
     src: photo20,
     alt: "Chris and Micah engagement portrait 20",
+    shape: "wide",
+  },
+  {
+    src: photo21,
+    alt: "Chris and Micah posing together beside their car",
+    shape: "wide",
+  },
+  {
+    src: photo22,
+    alt: "Chris and Micah holding hands across a garden table",
+    shape: "wide",
+  },
+  {
+    src: photo24,
+    alt: "Chris embracing Micah during their engagement session",
+    shape: "wide",
+  },
+  {
+    src: photo25,
+    alt: "Chris and Micah standing together on the garden steps",
     shape: "wide",
   },
 ] as const;

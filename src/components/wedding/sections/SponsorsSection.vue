@@ -15,8 +15,8 @@ const primarySponsorsGentlemen = [
 ];
 
 const primarySponsorsLadies = [
-  "Mrs. Taj Pineda",
-  "Dr. Rose May Badua",
+  "Mrs. Taj Mahal Pineda",
+  "Dr. Rose May Briones",
   "Mrs. Guenevere Gapilango",
   "Mrs. Emma Lacson",
   "Mrs. Elizabeth Olivera",
@@ -31,22 +31,6 @@ const primarySponsorsLadies = [
 <template>
   <section id="wedding-party" class="pattern">
     <div class="container">
-      <!-- Heading -->
-      <div class="row">
-        <div class="col-lg-8 offset-lg-2 text-center">
-          <p class="party-eyebrow">Chris & Micah</p>
-          <h2 class="section-title">Wedding Party</h2>
-
-          <div class="title-ornament" aria-hidden="true"><span>❦</span></div>
-
-          <p class="section-intro">
-            Together with our beloved family and cherished friends, we are
-            honored to introduce those who will stand beside us as we celebrate
-            one of the most meaningful moments of our lives.
-          </p>
-        </div>
-      </div>
-
       <!-- Primary Sponsors -->
       <div class="party-section invitation-panel primary-panel">
         <div class="text-center">
@@ -136,7 +120,7 @@ const primarySponsorsLadies = [
               <div class="role-description">
                 To bind us together in lifelong commitment.
               </div>
-              <div class="person-name small">Fernando Badua III</div>
+              <div class="person-name small">Ptr. Fernando Badua III</div>
               <div class="person-name small">Nicole Madriaga</div>
             </div>
           </div>
@@ -185,7 +169,7 @@ const primarySponsorsLadies = [
                 To carry the symbol of our blessings and prosperity.
               </div>
 
-              <div class="person-name small">Hans Briones</div>
+              <div class="person-name small">Hans Gabriel Briones</div>
             </div>
           </div>
 
