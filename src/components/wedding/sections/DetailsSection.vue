@@ -25,6 +25,23 @@ import guestAttireGuide from "@/assets/images/wedding_mm/guest-attire-guide.png"
           refrain from wearing white, as it is reserved for the bride.
         </p>
 
+        <div class="attire-palette" aria-labelledby="attire-palette-title">
+          <p id="attire-palette-title" class="attire-palette__label">
+            Celebration Palette
+          </p>
+          <div class="attire-palette__swatches">
+            <span style="--swatch: #ffceb5" aria-label="Peach"></span>
+            <span style="--swatch: #dfc2b0" aria-label="Warm beige"></span>
+            <span style="--swatch: #b89675" aria-label="Taupe"></span>
+            <span style="--swatch: #f5a8b0" aria-label="Blush pink"></span>
+            <span style="--swatch: #f8c7ca" aria-label="Soft pink"></span>
+            <span style="--swatch: #b8d5f6" aria-label="Powder blue"></span>
+          </div>
+          <p class="attire-palette__note">
+            Pastel shades inspired by our wedding colors
+          </p>
+        </div>
+
         <figure class="attire-guide">
           <div class="attire-guide__frame">
             <img
@@ -101,6 +118,56 @@ import guestAttireGuide from "@/assets/images/wedding_mm/guest-attire-guide.png"
 .attire-card .detail-text {
   max-width: 760px;
   margin-inline: auto;
+}
+
+.attire-palette {
+  width: fit-content;
+  margin: 2.2rem auto 0;
+  padding: 1.35rem 2.2rem 1.15rem;
+  border-top: 1px solid rgba(79, 73, 59, 0.2);
+  border-bottom: 1px solid rgba(79, 73, 59, 0.2);
+}
+
+.attire-palette__label {
+  margin: 0 0 1rem;
+  color: #4f493b;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.attire-palette__swatches {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.55rem, 1.4vw, 0.95rem);
+}
+
+.attire-palette__swatches span {
+  display: block;
+  width: clamp(2.6rem, 5vw, 3.65rem);
+  aspect-ratio: 1;
+  border: 1px solid rgba(79, 73, 59, 0.08);
+  border-radius: 50%;
+  background: var(--swatch);
+  box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.16),
+    0 7px 16px rgba(79, 73, 59, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.attire-palette__swatches span:hover {
+  box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.2),
+    0 10px 20px rgba(79, 73, 59, 0.16);
+  transform: translateY(-3px);
+}
+
+.attire-palette__note {
+  margin: 0.9rem 0 0;
+  color: #68604f;
+  font-family: "Playfair Display", serif;
+  font-size: 0.8rem;
+  font-style: italic;
 }
 
 .detail-title {
@@ -223,6 +290,26 @@ import guestAttireGuide from "@/assets/images/wedding_mm/guest-attire-guide.png"
 
   .attire-guide__frame::after {
     inset: 10px;
+  }
+
+  .attire-palette {
+    width: min(100%, 410px);
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+  }
+
+  .attire-palette__swatches {
+    gap: 0.45rem;
+  }
+
+  .attire-palette__swatches span {
+    width: clamp(2.35rem, 11vw, 3rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .attire-palette__swatches span {
+    transition: none;
   }
 }
 </style>

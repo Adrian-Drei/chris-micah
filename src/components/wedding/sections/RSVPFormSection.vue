@@ -10,11 +10,12 @@ import RSVPFormComponent from "../forms/RSVPFormComponent.vue";
     <div class="container max-lg:pb-20">
       <div class="row gx-6">
         <div class="col-xl-6 col-lg-5 overflow-image-wrapper center">
-          <i
-            class="icon-diamond-ring icon_large"
-            data-animation-direction="from-top"
-            data-animation-delay="250"
-          ></i>
+          <img
+            src="../../../assets/images/logo.png"
+            alt="logo"
+            class="size-20"
+          />
+
           <div data-animation-direction="from-top" data-animation-delay="250">
             <h2 class="title">They're getting married!</h2>
             <p>
@@ -25,6 +26,12 @@ import RSVPFormComponent from "../forms/RSVPFormComponent.vue";
               The wedding celebrations will take place over several days. Please
               complete the invitation form. Feel free to contact us if you have
               any questions.
+            </p>
+            <p class="font-bold uppercase">Adults-only celebration</p>
+            <p>
+              While we love your little ones, our ceremony and reception will be
+              adults-only, except for children in the wedding entourage. Thank
+              you for understanding.
             </p>
 
             <blockquote class="neela-quote small extra-margin">

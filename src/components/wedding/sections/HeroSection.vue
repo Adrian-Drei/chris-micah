@@ -68,14 +68,18 @@ import { RouterLink } from "vue-router";
               <cite>1 John 4:18–19</cite>
             </blockquote>
 
-            <RouterLink
-              to="/rsvp"
-              class="btn btn-primary hero-rsvp-cta"
+            <div
+              class="hero-actions"
               data-animation-direction="fade"
               data-animation-delay="1500"
             >
-              RSVP
-            </RouterLink>
+              <RouterLink to="/rsvp" class="btn hero-rsvp-cta">
+                RSVP
+              </RouterLink>
+              <RouterLink to="/location" class="btn hero-location-cta">
+                View Location
+              </RouterLink>
+            </div>
           </div>
         </div>
       </div>
@@ -167,12 +171,24 @@ import { RouterLink } from "vue-router";
   font-weight: 600;
 }
 
-.hero-rsvp-cta {
-  min-width: 190px;
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
   margin-top: 20px;
+}
+
+.hero-rsvp-cta,
+.hero-location-cta {
+  min-width: 190px;
+  margin: 0;
+  border: 1px solid #4f493b;
+}
+
+.hero-rsvp-cta {
   color: #fbfaf3;
   background: #4f493b;
-  border-color: #4f493b;
 }
 
 .hero-rsvp-cta:hover,
@@ -180,6 +196,18 @@ import { RouterLink } from "vue-router";
   color: #4f493b;
   background: #ede8d0;
   border-color: #4f493b;
+}
+
+.hero-location-cta {
+  color: #4f493b;
+  background: rgba(251, 250, 243, 0.78);
+  backdrop-filter: blur(4px);
+}
+
+.hero-location-cta:hover,
+.hero-location-cta:focus {
+  color: #fbfaf3;
+  background: #4f493b;
 }
 
 @media (max-width: 575px) {
@@ -223,9 +251,17 @@ import { RouterLink } from "vue-router";
     font-size: 0.88rem;
   }
 
-  .hero-rsvp-cta {
+  .hero-actions {
+    width: min(100%, 310px);
+    margin: 16px auto 0;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .hero-rsvp-cta,
+  .hero-location-cta {
+    width: 100%;
     min-width: 170px;
-    margin-top: 16px;
   }
 }
 </style>

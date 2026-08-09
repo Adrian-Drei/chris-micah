@@ -6,6 +6,7 @@ export const ROUTE_NAMES = {
   WELCOME: `${name}-welcome`,
   HOME: `${name}`,
   RSVP: `${name}-rsvp`,
+  LOCATION: `${name}-location`,
   RESPONSES: `${name}-responses`,
   KHMER_CEREMONY: `${name}-khmer-ceremony`,
   DENIED: `${name}-denied`,
@@ -58,6 +59,18 @@ const router = createRouter({
             header: () =>
               import("../components/wedding/headers/RSVPHeader.vue"),
             content: () => import("../views/RSVPView.vue"),
+            footer: () =>
+              import("../components/wedding/footers/MainFooter.vue"),
+          },
+        },
+        {
+          path: "/location",
+          name: ROUTE_NAMES.LOCATION,
+          meta: { metadata: pageMetadata.location },
+          components: {
+            header: () =>
+              import("../components/wedding/headers/RSVPHeader.vue"),
+            content: () => import("../views/LocationView.vue"),
             footer: () =>
               import("../components/wedding/footers/MainFooter.vue"),
           },

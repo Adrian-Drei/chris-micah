@@ -36,6 +36,7 @@
                 ></div>
               </div>
             </div>
+            <h3 class="section-title !text-xl">October 13, 2026 - 2:30 PM</h3>
           </div>
         </div>
       </div>

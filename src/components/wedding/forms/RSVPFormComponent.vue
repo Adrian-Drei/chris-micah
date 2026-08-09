@@ -4,6 +4,7 @@ import type { Ref } from "vue";
 
 import useVuelidate from "@vuelidate/core";
 import { helpers, required, email, requiredIf } from "@vuelidate/validators";
+import logoImg from "../../../assets/images/logo.png";
 
 import RSVPSupabaseDataServices, {
   GUEST_TYPES,
@@ -314,11 +315,11 @@ export default {
       data-animation-delay="250"
     >
       <header class="rsvp-form-heading">
-        <i class="icon-diamond-ring" aria-hidden="true"></i>
+        <img src="../../../assets/images/logo.png" alt="logo" class="size-9" />
         <p class="rsvp-form-eyebrow">Chris & Micah</p>
         <h3>Will you join us?</h3>
         <div class="rsvp-form-ornament" aria-hidden="true"><span>❦</span></div>
-        <p class="rsvp-form-intro">Kindly respond by September 13, 2026</p>
+        <p class="rsvp-form-intro">Kindly respond by August 31, 2026</p>
       </header>
 
       <form

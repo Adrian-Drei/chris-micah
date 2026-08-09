@@ -34,7 +34,7 @@ onUnmounted(() => {
   <DetailsSection />
   <WeddingGiftsSection />
   <GallerySection />
-  <WeddingLocationFullSection />
+  <!-- <WeddingLocationFullSection /> -->
   <CountdownSection />
 
   <ScrollToTop v-if="displayScrollToTop" />

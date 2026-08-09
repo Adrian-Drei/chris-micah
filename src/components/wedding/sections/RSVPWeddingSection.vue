@@ -25,12 +25,14 @@
             <span class="h-lines"></span>
             <span class="v-lines"></span>
 
-            <div class="invite_title invite_title_rsvp">
-              <div class="text">Wedding <small>Invitation</small></div>
+            <div class="invite_title invite_title_rsvp !pt-5">
+              <div class="text">
+                <p class="translate-y-10">Wedding <small>Invitation</small></p>
+              </div>
             </div>
 
-            <div class="invite_info">
-              <div class="row">
+            <div class="invite_info justify-center">
+              <!-- <div class="row">
                 <div class="col-6">
                   <h2>
                     Mr. Bernardo Madriaga <br />
@@ -46,15 +48,15 @@
                     Mrs. Jacqueline Badua
                   </h2>
                 </div>
-              </div>
+              </div> -->
 
-              <div class="uppercase my-4">
+              <!-- <div class="uppercase my-4">
                 joyfully invite you to celebrate the marriage of their children
-              </div>
+              </div> -->
 
               <h1 class="my-2">Chris <small>&</small> Micah</h1>
 
-              <div class="date">October 13, 2026</div>
+              <div class="date">October 13, 2026 - 2:30 PM</div>
 
               <div class="uppercase">
                 <i class="me-1 fas fa-map-marker-alt"></i>

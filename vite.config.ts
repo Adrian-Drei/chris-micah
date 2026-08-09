@@ -53,7 +53,7 @@ const createMetadataPlugin = (mode: string): Plugin => {
     siteUrl = parsed.origin;
   }
 
-  const publicPages = ["/", "/khmer-ceremony"];
+  const publicPages = ["/", "/location", "/khmer-ceremony"];
 
   const buildStructuredData = (metadata: PageMetadata) => {
     if (!siteUrl || metadata.noIndex) return [];
@@ -265,6 +265,7 @@ const createMetadataPlugin = (mode: string): Plugin => {
       const routeFiles: Record<string, PageMetadata> = {
         "welcome/index.html": pageMetadata.welcome,
         "rsvp/index.html": pageMetadata.rsvp,
+        "location/index.html": pageMetadata.location,
         "responses/index.html": pageMetadata.responses,
         "khmer-ceremony/index.html": pageMetadata.khmerCeremony,
         "denied/index.html": pageMetadata.denied,

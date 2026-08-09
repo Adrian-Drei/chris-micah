@@ -47,6 +47,15 @@ export const pageMetadata: Record<string, PageMetadata> = {
     noIndex: true,
     structuredData: "wedding",
   },
+  location: {
+    title: formatPageTitle("Wedding Location"),
+    description:
+      "Find the venue, address, and map for Chris and Micah's wedding on October 13, 2026, at Chateaux De Paris in Silang, Cavite.",
+    path: "/location",
+    type: "website",
+    image: SOCIAL_PREVIEW_IMAGE,
+    structuredData: "wedding",
+  },
   responses: {
     title: formatPageTitle("RSVP Responses"),
     description:
