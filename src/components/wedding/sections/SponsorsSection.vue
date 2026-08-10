@@ -185,7 +185,7 @@ const primarySponsorsLadies = [
                 To carry the symbol of our faith and devotion.
               </div>
 
-              <div class="person-name small">Mechizedek Caña</div>
+              <div class="person-name small">Ptr. Mechizedek Caña</div>
             </div>
           </div>
 
